@@ -36,8 +36,11 @@ jobs:
           ECR_REPOSITORY: root
           IMAGE_TAG: prod
         run: |
+          # Navigate to the directory containing the Dockerfile
+          cd src
+          
           # Build a docker image and tag it
-          docker buildx build -f Dockerfile.lambda --build-arg LAMBDA_FILE=lambda_home.py --platform linux/amd64 --provenance=false -t $ECR_REPOSITORY:$IMAGE_TAG .
+          docker buildx build --build-arg LAMBDA_FILE=lambda_home.py --platform linux/amd64 --provenance=false -t $ECR_REPOSITORY:$IMAGE_TAG .
 
           # Tag the image with the full registry/repository path
           docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
