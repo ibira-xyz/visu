@@ -1,11 +1,10 @@
 name: Update Static Files
 
-on:
-  push:
-    branches: [main]
-    paths:
-        - 'src/static/**'
-  workflow_dispatch:
+on: workflow_dispatch
+  # push:
+  #   branches: [main]
+  #   paths:
+  #       - 'src/static/**'
 
 jobs:
   upload-static:
