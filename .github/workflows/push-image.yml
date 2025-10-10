@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+      
+      - name: Export config file
+        run: echo ${{ secrets.CONFIG_PROD }} > src/config/prod.yaml
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5.1.0
@@ -40,7 +43,7 @@ jobs:
           cd src
           
           # Build a docker image and tag it
-          docker buildx build --build-arg LAMBDA_FILE=lambda_home.py --platform linux/amd64 --provenance=false -t $ECR_REPOSITORY:$IMAGE_TAG .
+          docker buildx build --build-arg LAMBDA_FILE=lambda_home.py --build-arg STAGE=prod --platform linux/amd64 --provenance=false -t $ECR_REPOSITORY:$IMAGE_TAG .
 
           # Tag the image with the full registry/repository path
           docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
