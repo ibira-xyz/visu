@@ -1,0 +1,46 @@
+name: Push Image to ECR
+
+on:
+  push:
+    branches: [main]
+    paths:
+        - 'src/static/**'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  upload-static:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          audience: sts.amazonaws.com
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::987608117561:role/ibiraWorkflow
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+      
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
+          ECR_REPOSITORY: root
+          IMAGE_TAG: prod
+        run: |
+          # Build a docker image and tag it
+          docker buildx build -f Dockerfile.lambda --build-arg LAMBDA_FILE=lambda_home.py --platform linux/amd64 --provenance=false -t $ECR_REPOSITORY:$IMAGE_TAG .
+
+          # Tag the image with the full registry/repository path
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+          # Push the image to Amazon ECR
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
