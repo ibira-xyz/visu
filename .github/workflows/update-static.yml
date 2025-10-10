@@ -7,6 +7,9 @@ on:
         - 'src/static/**'
   workflow_dispatch:
 
+permissions:
+  id-token: write
+
 jobs:
   upload-static:
     runs-on: ubuntu-latest
