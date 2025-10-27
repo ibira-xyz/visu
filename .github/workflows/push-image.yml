@@ -1,0 +1,57 @@
+name: Push Image to ECR
+
+on:
+  push:
+    branches: [main]
+    paths:
+        - 'src/static/**'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  upload-static:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      
+      - name: Export config file
+        run: echo "${{ secrets.CONFIG_PROD }}" > src/config/prod.yaml
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          audience: sts.amazonaws.com
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::987608117561:role/ibiraWorkflow
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry: ${{ steps.ecr-login.outputs.registry }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: linux/amd64
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image to Amazon ECR
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src
+          build-args: |
+            LAMBDA_FILE=lambda_home.py
+            STAGE=prod
+          platforms: linux/amd64
+          tags: ${{ steps.ecr-login.outputs.registry }}/root:prod
+          push: true
+          provenance: false
+
