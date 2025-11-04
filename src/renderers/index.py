@@ -11,6 +11,6 @@ class IndexRenderer:
         self.template = self.template_env.get_template(template_name)
         self.static_url = static_url
 
-    def render(self, items=None):
+    def render(self, feat=None, items=None):
         """Render the template with the given context."""
-        return self.template.render(static_url=self.static_url, items=items)
+        return self.template.render(static_url=self.static_url, feat=feat, items=items)
