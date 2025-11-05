@@ -30,21 +30,21 @@
         </div>
       </nav>
 
-      <div class="flex gap-4 mb-8">
+      <div class="flex flex-col lg:flex-row gap-4 mb-8">
         {% with test_div='<div class="h-96 border-2 border-dashed border-red-500 bg-red-50 flex items-center justify-center"><span class="text-red-600 font-semibold">Test Area</span></div>' %}
-        <div class="flex flex-col gap-4 w-8/12">
+        <div class="flex flex-col gap-4 w-full lg:w-8/12">
           <div>
-            {{ test_div|safe }}
+        {{ test_div|safe }}
           </div>
-          <div class="grid gap-4 grid-cols-3">
-            {% for i in range(6) %}
-              {{ test_div|safe }}
-            {% endfor %}
+          <div class="grid gap-4 grid-cols-2 lg:grid-cols-3">
+        {% for i in range(6) %}
+          {{ test_div|safe }}
+        {% endfor %}
           </div>
         </div>
-        <div class="flex flex-col gap-4 w-4/12">
+        <div class="flex flex-col gap-4 w-full lg:w-4/12">
           {% for item in items %}
-              {{ test_div|safe }}
+          {{ test_div|safe }}
           {% endfor %}
         </div>
         {% endwith %}
