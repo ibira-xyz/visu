@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>{{ title }} - ibira</title>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ static_url + 'assets/og-image.png' }}" />
+    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:site_name" content="ibira" />
+    <meta property="og:locale" content="pt_BR" />
+    {# <meta property="og:locale_alternate" content="en_US" /> #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{{ static_url + 'output.css' }}" />
+  </head>
+  <body class="bg-seasalt">
+    <div class="container mx-auto p-4">
+      <nav class="mb-8 flex justify-center">
+        <div class="flex w-11/12 justify-between items-center">
+          <div class="flex items-center space-x-4">
+            <a href="/" class="no-underline">
+              <h1 id="site-title" class="text-dark-moss-green text-6xl font-bold">ibira</h1>
+            </a>
+            <span aria-hidden="true" class="invisible text-6xl font-bold">ibira</span>
+          </div>
+          <div class="flex space-x-6">
+            <a href="/sobre" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">sobre</a>
+            <a href="/projetos" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">projetos</a>
+            <a href="/now" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">now</a>
+          </div>
+        </div>
+      </nav>
+
+      <article class="bg-white shadow-md p-8 mb-8 max-w-4xl mx-auto">
+        <header class="mb-8">
+          <h1 class="text-4xl font-bold mb-4 text-dark-moss-green">{{ title }}</h1>
+          {% if date %}
+          <time class="text-gray-600 text-sm">{{ date }}</time>
+          {% endif %}
+        </header>
+
+        <div class="prose prose-lg max-w-none">
+          {{ content | safe }}
+        </div>
+      </article>
+    </div>
+    <footer class="bg-dark-moss-green-100 text-dark-moss-green-700 py-6 mt-12">
+      <div class="container mx-auto px-4 text-center py-8">
+        <p>&copy; 2025 ibira. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

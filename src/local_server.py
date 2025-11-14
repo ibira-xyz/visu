@@ -3,7 +3,10 @@ from flask import Flask
 from lorem_text import lorem
 from yaml import load, SafeLoader
 
-from renderers import IndexRenderer
+from renderers import IndexRenderer, ArticleRenderer
+from interpreters.markdown import MarkdownInterpreter
+from styles.simple_style import SimpleStyle
+from readers.local_reader import LocalReader 
 
 app = Flask(__name__)
 
@@ -13,18 +16,34 @@ with open("config/local.yaml", "r", encoding="utf-8") as f:
 @app.route("/")
 def home():
     """Route handler for the home page"""
-    return IndexRenderer(config).render(feat={
-        "title": "Featured Item",
-        "description": lorem.words(50),
-        "image_url": "drawing.svg",
-        "link": "https://example.com/featured"
-    },
+    return IndexRenderer(config).render(
         items=[{
-        "title": "Sample Item",
+        "title": "Particionando o Espaço de Entrada em Redes Neurais",
+        "description": lorem.words(25),
+        "image": "drawing.svg",
+        "link": "https://google.com"
+    }, {
+        "title": "Sample Item 2",
         "description": lorem.words(20),
-        "image_url": "drawing.svg",
+        "image": "drawing.svg",
         "link": "https://example.com"
-    }]*5
+    }, {
+        "title": "Sample Item 3",
+        "description": lorem.words(20),
+        "image": "drawing.svg",
+        "link": "https://example.com"
+    }]
+    )
+
+@app.route("/article")
+def article():
+    """Route handler for a sample article page"""
+    
+    return ArticleRenderer(config).render(
+        title="Particionando o Espaço de Entrada em Redes Neurais",
+        content=MarkdownInterpreter(SimpleStyle()).interpret(LocalReader("static/assets/content.md").read()),
+        description="Um artigo sobre particionamento de espaço em redes neurais",
+        date="12 de novembro de 2025"
     )
 
 
