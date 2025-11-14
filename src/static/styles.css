@@ -56,3 +56,34 @@
   --color-cordovan-800: #dbacab;
   --color-cordovan-900: #edd5d5;
 }
+
+/* Semantic classes for article content */
+@layer components {
+  .article-paragraph {
+    @apply text-dark-moss-green indent-8 text-justify;
+  }
+
+  .article-heading-1 {
+    @apply text-dark-moss-green;
+  }
+
+  .article-heading-2 {
+    @apply text-cordovan-400 font-bold mt-8 mb-4;
+  }
+
+  .article-heading-3 {
+    @apply text-dark-moss-green;
+  }
+
+  .article-list {
+    @apply text-dark-moss-green;
+  }
+
+  .article-list-item {
+    @apply text-dark-moss-green;
+  }
+
+  .article-link {
+    @apply text-dark-moss-green-600 hover:underline;
+  }
+}

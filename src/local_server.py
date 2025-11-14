@@ -5,7 +5,6 @@ from yaml import load, SafeLoader
 
 from renderers import IndexRenderer, ArticleRenderer
 from interpreters.markdown import MarkdownInterpreter
-from styles.simple_style import SimpleStyle
 from readers.local_reader import LocalReader 
 
 app = Flask(__name__)
@@ -41,7 +40,7 @@ def article():
     
     return ArticleRenderer(config).render(
         title="Particionando o Espaço de Entrada em Redes Neurais",
-        content=MarkdownInterpreter(SimpleStyle()).interpret(LocalReader("static/assets/content.md").read()),
+        content=MarkdownInterpreter().interpret(LocalReader("static/assets/content.md").read()),
         description="Um artigo sobre particionamento de espaço em redes neurais",
         date="12 de novembro de 2025"
     )

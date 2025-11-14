@@ -363,9 +363,6 @@
   .text-cordovan-400 {
     color: var(--color-cordovan-400);
   }
-  .text-cordovan-700 {
-    color: var(--color-cordovan-700);
-  }
   .text-dark-moss-green {
     color: var(--color-dark-moss-green);
   }
@@ -417,6 +414,40 @@
     }
   }
   .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
+}
+@layer components {
+  .article-paragraph {
+    text-align: justify;
+    text-indent: calc(var(--spacing) * 8);
+    color: var(--color-dark-moss-green);
+  }
+  .article-heading-1 {
+    color: var(--color-dark-moss-green);
+  }
+  .article-heading-2 {
+    margin-top: calc(var(--spacing) * 8);
+    margin-bottom: calc(var(--spacing) * 4);
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-cordovan-400);
+  }
+  .article-heading-3 {
+    color: var(--color-dark-moss-green);
+  }
+  .article-list {
+    color: var(--color-dark-moss-green);
+  }
+  .article-list-item {
+    color: var(--color-dark-moss-green);
+  }
+  .article-link {
+    color: var(--color-dark-moss-green-600);
     &:hover {
       @media (hover: hover) {
         text-decoration-line: underline;
