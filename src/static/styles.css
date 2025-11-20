@@ -60,15 +60,15 @@
 /* Semantic classes for article content */
 @layer components {
   .article-paragraph {
-    @apply text-dark-moss-green indent-8 text-justify;
+    @apply text-dark-moss-green indent-8 text-justify mx-32 text-lg;
   }
 
   .article-heading-1 {
-    @apply text-dark-moss-green;
+    @apply text-dark-moss-green mx-20;
   }
 
   .article-heading-2 {
-    @apply text-cordovan-400 font-bold mt-8 mb-4;
+    @apply text-cordovan-400 font-bold mt-8 mb-4 text-center text-xl;
   }
 
   .article-heading-3 {
@@ -85,5 +85,11 @@
 
   .article-link {
     @apply text-dark-moss-green-600 hover:underline;
+  }
+  .article-image-caption {
+    @apply text-center text-xs text-seasalt-300 mt-2
+  }
+  .article-image-figure {
+    @apply justify-center mb-8 mt-8
   }
 }

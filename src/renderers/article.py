@@ -12,7 +12,7 @@ class ArticleRenderer:
         self.template = self.template_env.get_template(template_name)
         self.static_url = static_url
 
-    def render(self, title, content: BeautifulSoup, description="", date=None, url=""):
+    def render(self, title, content: BeautifulSoup, description="", date=None, url="", author=None, banner=None, tags=[]):
         """Render the template with the given context."""
         return self.template.render(
             static_url=self.static_url,
@@ -20,5 +20,8 @@ class ArticleRenderer:
             content=str(content),
             description=description,
             date=date,
-            url=url
+            url=url,
+            author=author,
+            banner=banner,
+            tags=tags
         )

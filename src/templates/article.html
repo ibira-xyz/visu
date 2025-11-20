@@ -34,9 +34,40 @@
 
       <article class="bg-white shadow-md p-8 mb-8 max-w-4xl mx-auto">
         <header class="mb-8">
-          <h1 class="text-4xl font-bold mb-4 text-dark-moss-green">{{ title }}</h1>
-          {% if date %}
-          <time class="text-gray-600 text-sm">{{ date }}</time>
+          {% if banner %}
+          <figure class="mb-6">
+            <img src="{{ '/' + banner.path }}" alt="{{ banner.description }}" class="w-full h-auto" />
+            {% if banner.legend %}
+            <figcaption class="article-image-caption">{{ banner.legend }}</figcaption>
+            {% endif %}
+          </figure>
+          {% endif %}
+
+          <h1 class="text-4xl font-bold mb-4 mx-12 text-dark-moss-green">{{ title }}</h1>
+          
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex-row items-center space-x-4 mx-20">
+              {% if author %}
+              <div class="text-gray-700">
+                {% if author.email %}
+                <a href='mailto: {{author.email}} '><span class="font-semibold">{{ author.name }}</span></a>
+                {% else %}
+                <span class="font-semibold">{{ author.name }}</span>
+                {% endif %}
+              </div>
+              {% endif %}
+              {% if date %}
+              <time class="text-gray-600 text-sm">{{ date }}</time>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if tags %}
+          <div class="flex flex-wrap gap-2 mb-4 mx-24">
+            {% for tag in tags %}
+            <span class="bg-cordovan-900 text-eerie-black-700 px-3 py-1 rounded-full text-sm">{{ tag }}</span>
+            {% endfor %}
+          </div>
           {% endif %}
         </header>
 
