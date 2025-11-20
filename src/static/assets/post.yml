@@ -1,0 +1,23 @@
+author:
+  name: Jonas Amaro
+  email: jonas@ibira.xyz
+banner:
+  path: static/assets/drawing.svg
+  description: "An illustrative banner for the YAML article."
+  legend: "YAML Basics"
+date: 2024-06-15
+title: "Understanding the Basics of YAML"
+description: "A comprehensive guide to YAML syntax and usage."
+tags:
+  - YAML
+  - Configuration
+  - Data Serialization
+content:
+  - type: markdown
+    path: static/assets/content.md
+  - type: image
+    path: static/assets/drawing.svg
+    description: "A diagram illustrating YAML structure."
+    legend: "YAML Structure Diagram"
+  - type: markdown
+    path: static/assets/content2.md
