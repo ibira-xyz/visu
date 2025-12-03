@@ -7,11 +7,11 @@ config = AppConfig()
 
 def get_backend():
     """Factory function to get the appropriate reader based on config."""
-    reader_type = config.get('reader_type', 'local')
+    backend_type = config.get('backend_type', 'local')
 
-    if reader_type == 'local':
+    if backend_type == 'local':
         return LocalBackend(config.get('base_path', ''))
-    elif reader_type == 'remote':
-        return AwsBackend(config.get('remote_url', ''))
+    elif backend_type == 'aws':
+        return AwsBackend()
     else:
-        raise ValueError(f"Unknown reader type: {reader_type}")
+        raise ValueError(f"Unknown backend type: {backend_type}")
