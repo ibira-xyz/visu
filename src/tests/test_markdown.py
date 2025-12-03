@@ -1,47 +1,43 @@
 """Unit tests for the MarkdownInterpreter module."""
 import unittest
-from interpreters.markdown import MarkdownInterpreter, SEMANTIC_CLASSES
+from parsers import parse_markdown
 
 
 class TestMarkdownInterpreter(unittest.TestCase):
     """Test cases for MarkdownInterpreter class."""
 
-    def setUp(self):
-        """Set up test fixtures."""
-        self.interpreter = MarkdownInterpreter()
-
     def test_interpret_simple_paragraph(self):
         """Test interpreting a simple paragraph."""
         markdown_text = "This is a paragraph."
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-paragraph', result)
         self.assertIn('This is a paragraph.', result)
 
     def test_interpret_heading_1(self):
         """Test interpreting H1 heading."""
         markdown_text = "# Heading 1"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-heading-1', result)
         self.assertIn('Heading 1', result)
 
     def test_interpret_heading_2(self):
         """Test interpreting H2 heading."""
         markdown_text = "## Heading 2"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-heading-2', result)
         self.assertIn('Heading 2', result)
 
     def test_interpret_heading_3(self):
         """Test interpreting H3 heading."""
         markdown_text = "### Heading 3"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-heading-3', result)
         self.assertIn('Heading 3', result)
 
     def test_interpret_unordered_list(self):
         """Test interpreting unordered list."""
         markdown_text = "- Item 1\n- Item 2\n- Item 3"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-list', result)
         self.assertIn('article-list-item', result)
         self.assertIn('Item 1', result)
@@ -50,7 +46,7 @@ class TestMarkdownInterpreter(unittest.TestCase):
     def test_interpret_ordered_list(self):
         """Test interpreting ordered list."""
         markdown_text = "1. First\n2. Second\n3. Third"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-list', result)
         self.assertIn('article-list-item', result)
         self.assertIn('First', result)
@@ -59,14 +55,14 @@ class TestMarkdownInterpreter(unittest.TestCase):
     def test_interpret_link(self):
         """Test interpreting a link."""
         markdown_text = "[Example](https://example.com)"
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-link', result)
         self.assertIn('https://example.com', result)
         self.assertIn('Example', result)
 
     def test_interpret_empty_string(self):
         """Test interpreting an empty string."""
-        result = self.interpreter.interpret("")
+        result = parse_markdown("")
         self.assertIsInstance(result, str)
         self.assertEqual(result.strip(), "")
 
@@ -82,20 +78,12 @@ This is a paragraph with [a link](https://example.com).
 - Item 2
 
 Another paragraph."""
-        result = self.interpreter.interpret(markdown_text)
+        result = parse_markdown(markdown_text)
         self.assertIn('article-heading-1', result)
         self.assertIn('article-heading-2', result)
         self.assertIn('article-paragraph', result)
         self.assertIn('article-list', result)
         self.assertIn('article-link', result)
-
-    def test_semantic_classes_constant(self):
-        """Test that SEMANTIC_CLASSES is properly defined."""
-        self.assertIsInstance(SEMANTIC_CLASSES, dict)
-        self.assertIn('p', SEMANTIC_CLASSES)
-        self.assertIn('h1', SEMANTIC_CLASSES)
-        self.assertIn('a', SEMANTIC_CLASSES)
-        self.assertEqual(SEMANTIC_CLASSES['p'], 'article-paragraph')
 
 
 if __name__ == '__main__':
