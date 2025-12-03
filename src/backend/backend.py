@@ -11,3 +11,7 @@ class Backend(ABC):
     @abstractmethod
     def get_content(self, content_uri):
         """Read content by its name or path."""
+
+    @abstractmethod
+    def fetch_index_data(self):
+        """Fetch data for the index view."""

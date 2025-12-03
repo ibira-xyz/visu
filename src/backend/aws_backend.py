@@ -12,3 +12,7 @@ class AwsBackend(Backend):
     def get_content(self, content_name):
         # Implementation to fetch content from remote URL
         pass
+
+    def fetch_index_data(self):
+        # Implementation to fetch index data from remote URL
+        pass

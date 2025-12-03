@@ -1,4 +1,5 @@
 """A simple local file reader that reads the content of a file from the local filesystem."""
+from glob import glob
 
 from yaml import load, SafeLoader
 
@@ -22,3 +23,12 @@ class LocalBackend(Backend):
         """Read the content of a local file based on the relative path."""
         with open(content_uri, 'r', encoding='utf-8') as file:
             return file.read()
+
+    def fetch_index_data(self):
+        """Fetch data for the index view."""
+        index_files = glob(f"{self.base_path}/*.yml")
+        for file_path in index_files:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = load(file, Loader=SafeLoader)
+                content['slug'] = file_path.split('/')[-1].replace('.yml', '')
+                yield content
