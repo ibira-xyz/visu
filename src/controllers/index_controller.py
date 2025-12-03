@@ -5,9 +5,6 @@ app_config = AppConfig()
 
 class IndexController:
     """Controller for handling index view logic."""
-    def __init__(self, backend):
-        self.backend = backend
-
     def _process_post(self, post):
         """Process a single post item."""
         # Example processing logic; can be customized as needed

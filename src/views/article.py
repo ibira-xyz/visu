@@ -2,10 +2,11 @@
 from models.post import Post
 from views.view import View
 
+
 class ArticleView(View):
     """Renders the article.html template with provided context."""
-    def __init__(self, searchpath: str):
-        super().__init__(searchpath)
+    def __init__(self):
+        super().__init__()
         self.template = self.template_env.get_template('article.html')
 
     def render(self, context: Post):

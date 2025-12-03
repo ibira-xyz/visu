@@ -1,6 +1,5 @@
 """A simple local server for development and testing purposes."""
 from flask import Flask
-from yaml import load, SafeLoader
 
 from views import IndexView, ArticleView
 from controllers import PostController, IndexController
@@ -8,16 +7,13 @@ from backend import get_backend
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-with open("config/local.yaml", "r", encoding="utf-8") as f:
-    config = load(f, Loader=SafeLoader)
+backend = get_backend()
 
-backend = get_backend(config)
+index_controller = IndexController()
+index_view = IndexView()
 
 post_controller = PostController(backend)
-article_view = ArticleView(config['searchpath'])
-
-index_controller = IndexController(backend)
-index_view = IndexView(config['searchpath'])
+article_view = ArticleView()
 
 @app.route("/")
 def home():

@@ -1,8 +1,11 @@
 """Module to get the appropriate reader based on configuration."""
 from backend.local_backend import LocalBackend
 from backend.aws_backend import AwsBackend
+from config import AppConfig
 
-def get_backend(config):
+config = AppConfig()
+
+def get_backend():
     """Factory function to get the appropriate reader based on config."""
     reader_type = config.get('reader_type', 'local')
 
