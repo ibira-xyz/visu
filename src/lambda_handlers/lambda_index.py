@@ -32,7 +32,7 @@ article_view = ArticleView()
 logger.info("All components initialized in %.3f seconds", time.time() - start_time)
 
 
-def handler(_context, _event):
+def handler(_event, _context):
     """AWS Lambda handler function"""
     handler_start = time.time()
     logger.info("Handler execution started")
