@@ -1,6 +1,9 @@
 """Controller for index view logic."""
+import logging
+import time
 from config import AppConfig
 
+logger = logging.getLogger(__name__)
 app_config = AppConfig()
 
 class IndexController:
@@ -18,7 +21,19 @@ class IndexController:
 
     def run(self, index_data):
         """Fetch data for the index view."""
+        process_start = time.time()
+        logger.info("IndexController starting to process %d posts", len(index_data))
+
         # Fetch and return data needed for the index view
-        processed_data = [self._process_post(item) for item in index_data]
-            
+        processed_data = []
+        for i, item in enumerate(index_data):
+            if i > 0 and i % 5 == 0:  # Log progress every 5 items
+                logger.info("Processed %d/%d posts", i, len(index_data))
+            processed_data.append(self._process_post(item))
+
+        process_time = time.time() - process_start
+        logger.info(
+            "IndexController completed processing %d posts in %.3f seconds",
+            len(processed_data), process_time)
+
         return {"items": processed_data}
