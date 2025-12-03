@@ -33,7 +33,7 @@ COPY models/ ${LAMBDA_TASK_ROOT}/models/
 COPY parsers/ ${LAMBDA_TASK_ROOT}/parsers/
 COPY templates/ ${LAMBDA_TASK_ROOT}/templates/
 COPY views/ ${LAMBDA_TASK_ROOT}/views/
-COPY config/${STAGE}.yaml ${LAMBDA_TASK_ROOT}/config.yaml
+COPY config/${STAGE}.yaml ${LAMBDA_TASK_ROOT}/config/config.yaml
 COPY lambda_handlers/${LAMBDA_FILE} ${LAMBDA_TASK_ROOT}/lambda_handler.py
 
 # Set environment variable to indicate Docker environment
