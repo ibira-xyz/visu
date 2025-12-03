@@ -6,7 +6,7 @@ class IndexView(View):
     def __init__(self, searchpath: str):
         super().__init__(searchpath)
         self.template = self.template_env.get_template('index.html')
-
-    def render(self, feat=None, items=None):
+    
+    def render(self, items=None):
         """Render the template with the given context."""
-        return self.template.render(feat=feat, items=items)
+        return self.template.render(items=items)
