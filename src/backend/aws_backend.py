@@ -8,6 +8,7 @@ from backend.backend import Backend
 from config.app_config import AppConfig
 
 logger = logging.getLogger(__name__)
+boto3.set_stream_logger('boto3.resources', logging.INFO)
 config = AppConfig()
 
 class AwsBackend(Backend):
@@ -15,7 +16,7 @@ class AwsBackend(Backend):
     def __init__(self):
         init_start = time.time()
         logger.info("Initializing AwsBackend")
-        
+
         logger.info("Creating DynamoDB resource")
         self.dynamodb = boto3.resource('dynamodb')
 
@@ -59,7 +60,8 @@ class AwsBackend(Backend):
 
         total_time = time.time() - s3_start
         read_time = time.time() - read_start
-        logger.info("S3 content fetched in %.3f seconds (read: %.3f seconds)", total_time, read_time)
+        logger.info("S3 content fetched in %.3f seconds (read: %.3f seconds)",
+                    total_time, read_time)
 
         return content
 
@@ -72,7 +74,8 @@ class AwsBackend(Backend):
 
         scan_time = time.time() - scan_start
         items = response.get('Items', [])
-        logger.info("DynamoDB scan completed in %.3f seconds. Found %d items", scan_time, len(items))
+        logger.info("DynamoDB scan completed in %.3f seconds. Found %d items",
+                    scan_time, len(items))
 
         process_start = time.time()
         for i, item in enumerate(items):
