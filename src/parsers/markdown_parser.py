@@ -3,14 +3,14 @@ from markdown import markdown
 from bs4 import BeautifulSoup
 
 SEMANTIC_CLASSES = {
-    "p": "article-paragraph",
-    "h1": "article-heading-1",
-    "h2": "article-heading-2",
-    "h3": "article-heading-3",
-    "ul": "article-list",
-    "ol": "article-list",
-    "li": "article-list-item",
-    "a": "article-link",
+    "p": "post-paragraph",
+    "h1": "post-heading-1",
+    "h2": "post-heading-2",
+    "h3": "post-heading-3",
+    "ul": "post-list",
+    "ol": "post-list",
+    "li": "post-list-item",
+    "a": "post-link",
 }
 
 def parse_markdown(markdown_text: str) -> str:

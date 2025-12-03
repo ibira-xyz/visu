@@ -1,8 +1,8 @@
-"""Unit tests for the IndexRenderer module."""
+"""Unit tests for the IndexView module."""
 import unittest
 import tempfile
 import os
-from renderers.index import IndexRenderer
+from views import IndexView
 
 
 class TestIndexRenderer(unittest.TestCase):
@@ -70,37 +70,25 @@ class TestIndexRenderer(unittest.TestCase):
 
     def test_render_empty_index(self):
         """Test rendering an empty index."""
-        renderer = IndexRenderer(self.config)
+        renderer = IndexView()
         result = renderer.render()
         self.assertIn("<!DOCTYPE html>", result)
         self.assertIn("/static", result)
 
-    def test_render_with_featured_only(self):
-        """Test rendering with only featured item."""
-        renderer = IndexRenderer(self.config)
-        feat = {
-            'title': 'Featured Article',
-            'description': 'This is the featured content'
-        }
-        result = renderer.render(feat=feat)
-        self.assertIn('Featured Article', result)
-        self.assertIn('This is the featured content', result)
-        self.assertIn('featured', result)
-
     def test_render_with_items_only(self):
         """Test rendering with only items list."""
-        renderer = IndexRenderer(self.config)
+        view = IndexView()
         items = [
-            {'title': 'Article 1', 'url': '/article1'},
-            {'title': 'Article 2', 'url': '/article2'},
-            {'title': 'Article 3', 'url': '/article3'}
+            {'title': 'Post 1', 'url': '/post1'},
+            {'title': 'Post 2', 'url': '/post2'},
+            {'title': 'Post 3', 'url': '/post3'}
         ]
-        result = renderer.render(items=items)
-        self.assertIn('Article 1', result)
-        self.assertIn('Article 2', result)
-        self.assertIn('Article 3', result)
-        self.assertIn('/article1', result)
-        self.assertIn('/article2', result)
+        result = view.render(items=items)
+        self.assertIn('Post 1', result)
+        self.assertIn('Post 2', result)
+        self.assertIn('Post 3', result)
+        self.assertIn('/post1', result)
+        self.assertIn('/post2', result)
 
     def test_render_with_feat_and_items(self):
         """Test rendering with both featured item and items list."""

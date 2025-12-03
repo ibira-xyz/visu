@@ -22,7 +22,7 @@ class IndexController:
     def run(self, index_data):
         """Fetch data for the index view."""
         process_start = time.time()
-        logger.info("IndexController starting to process %d posts", len(index_data))
+        logger.info("IndexController starting to process posts")
 
         # Fetch and return data needed for the index view
         processed_data = []

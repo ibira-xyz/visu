@@ -3,7 +3,7 @@ author:
   email: jonas@ibira.xyz
 banner:
   path: static/assets/drawing.svg
-  description: "An illustrative banner for the YAML article."
+  description: "An illustrative banner for the YAML post."
   legend: "YAML Basics"
 date: 2024-06-15
 title: "Understanding the Basics of YAML"

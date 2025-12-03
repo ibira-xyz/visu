@@ -10,36 +10,36 @@ class TestMarkdownInterpreter(unittest.TestCase):
         """Test interpreting a simple paragraph."""
         markdown_text = "This is a paragraph."
         result = parse_markdown(markdown_text)
-        self.assertIn('article-paragraph', result)
+        self.assertIn('post-paragraph', result)
         self.assertIn('This is a paragraph.', result)
 
     def test_interpret_heading_1(self):
         """Test interpreting H1 heading."""
         markdown_text = "# Heading 1"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-heading-1', result)
+        self.assertIn('post-heading-1', result)
         self.assertIn('Heading 1', result)
 
     def test_interpret_heading_2(self):
         """Test interpreting H2 heading."""
         markdown_text = "## Heading 2"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-heading-2', result)
+        self.assertIn('post-heading-2', result)
         self.assertIn('Heading 2', result)
 
     def test_interpret_heading_3(self):
         """Test interpreting H3 heading."""
         markdown_text = "### Heading 3"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-heading-3', result)
+        self.assertIn('post-heading-3', result)
         self.assertIn('Heading 3', result)
 
     def test_interpret_unordered_list(self):
         """Test interpreting unordered list."""
         markdown_text = "- Item 1\n- Item 2\n- Item 3"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-list', result)
-        self.assertIn('article-list-item', result)
+        self.assertIn('post-list', result)
+        self.assertIn('post-list-item', result)
         self.assertIn('Item 1', result)
         self.assertIn('Item 2', result)
 
@@ -47,8 +47,8 @@ class TestMarkdownInterpreter(unittest.TestCase):
         """Test interpreting ordered list."""
         markdown_text = "1. First\n2. Second\n3. Third"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-list', result)
-        self.assertIn('article-list-item', result)
+        self.assertIn('post-list', result)
+        self.assertIn('post-list-item', result)
         self.assertIn('First', result)
         self.assertIn('Second', result)
 
@@ -56,7 +56,7 @@ class TestMarkdownInterpreter(unittest.TestCase):
         """Test interpreting a link."""
         markdown_text = "[Example](https://example.com)"
         result = parse_markdown(markdown_text)
-        self.assertIn('article-link', result)
+        self.assertIn('post-link', result)
         self.assertIn('https://example.com', result)
         self.assertIn('Example', result)
 
@@ -79,11 +79,11 @@ This is a paragraph with [a link](https://example.com).
 
 Another paragraph."""
         result = parse_markdown(markdown_text)
-        self.assertIn('article-heading-1', result)
-        self.assertIn('article-heading-2', result)
-        self.assertIn('article-paragraph', result)
-        self.assertIn('article-list', result)
-        self.assertIn('article-link', result)
+        self.assertIn('post-heading-1', result)
+        self.assertIn('post-heading-2', result)
+        self.assertIn('post-paragraph', result)
+        self.assertIn('post-list', result)
+        self.assertIn('post-link', result)
 
 
 if __name__ == '__main__':

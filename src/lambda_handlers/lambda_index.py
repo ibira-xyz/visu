@@ -3,7 +3,7 @@ import logging
 import time
 from backend import get_backend
 from controllers import IndexController, PostController
-from views import IndexView, ArticleView
+from views import IndexView, PostView
 
 # Configure logging
 logger = logging.getLogger()
@@ -28,7 +28,7 @@ index_view = IndexView()
 logger.info("IndexView initialized in %.3f seconds", time.time() - start_time)
 
 post_controller = PostController(backend)
-article_view = ArticleView()
+post_view = PostView()
 logger.info("All components initialized in %.3f seconds", time.time() - start_time)
 
 

@@ -45,16 +45,16 @@ class PostController:
                 soup.append(BeautifulSoup(html, "html.parser"))
 
             elif item_type == 'image':
-                figure = soup.new_tag('figure', **{'class': 'article-image-figure'})
+                figure = soup.new_tag('figure', **{'class': 'post-image-figure'})
 
                 img = soup.new_tag('img',
                                   src=f'{self.cdn_url}{item["path"]}',
                                   alt=item.get('description', ''),
-                                  **{'class': 'article-image'})
+                                  **{'class': 'post-image'})
                 figure.append(img)
 
                 if item.get('legend'):
-                    figcaption = soup.new_tag('figcaption', **{'class': 'article-image-caption'})
+                    figcaption = soup.new_tag('figcaption', **{'class': 'post-image-caption'})
                     figcaption.string = item['legend']
                     figure.append(figcaption)
 

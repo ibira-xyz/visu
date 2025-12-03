@@ -1,20 +1,20 @@
-"""Unit tests for the ArticleRenderer module."""
+"""Unit tests for the PostView module."""
 import unittest
 import tempfile
 import os
 from bs4 import BeautifulSoup
-from renderers.article import ArticleRenderer
+from views import PostView
 
 
-class TestArticleRenderer(unittest.TestCase):
-    """Test cases for ArticleRenderer class."""
+class TestPostView(unittest.TestCase):
+    """Test cases for PostView class."""
 
     def setUp(self):
         """Set up test fixtures with a temporary template directory."""
         # Create a temporary directory for templates
         self.temp_dir = tempfile.mkdtemp()
 
-        # Create a simple article.html template
+        # Create a simple post.html template
         self.template_content = """<!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@ class TestArticleRenderer(unittest.TestCase):
 </body>
 </html>"""
 
-        template_path = os.path.join(self.temp_dir, 'article.html')
+        template_path = os.path.join(self.temp_dir, 'post.html')
         with open(template_path, 'w', encoding='utf-8') as f:
             f.write(self.template_content)
 
@@ -45,7 +45,7 @@ class TestArticleRenderer(unittest.TestCase):
     def tearDown(self):
         """Clean up temporary files."""
         # Remove the template file and directory
-        template_path = os.path.join(self.temp_dir, 'article.html')
+        template_path = os.path.join(self.temp_dir, 'post.html')
         if os.path.exists(template_path):
             os.unlink(template_path)
         if os.path.exists(self.temp_dir):
@@ -53,35 +53,35 @@ class TestArticleRenderer(unittest.TestCase):
 
     def test_init_with_config(self):
         """Test initialization with configuration."""
-        renderer = ArticleRenderer(self.config)
+        renderer = PostView(self.config)
         self.assertEqual(renderer.static_url, '/static')
         self.assertIsNotNone(renderer.template)
         self.assertIsNotNone(renderer.template_env)
 
-    def test_render_basic_article(self):
-        """Test rendering a basic article."""
-        renderer = ArticleRenderer(self.config)
-        content = BeautifulSoup("<p>Article content</p>", 'html.parser')
+    def test_render_basic_post(self):
+        """Test rendering a basic post."""
+        renderer = PostView(self.config)
+        content = BeautifulSoup("<p>Post content</p>", 'html.parser')
         result = renderer.render(
-            title="Test Article",
+            title="Test Post",
             content=content
         )
-        self.assertIn("Test Article", result)
-        self.assertIn("Article content", result)
+        self.assertIn("Test Post", result)
+        self.assertIn("Post content", result)
         self.assertIn("/static", result)
 
     def test_render_with_all_parameters(self):
         """Test rendering with all parameters."""
-        renderer = ArticleRenderer(self.config)
+        renderer = PostView(self.config)
         content = BeautifulSoup("<p>Full content</p>", 'html.parser')
         result = renderer.render(
-            title="Complete Article",
+            title="Complete Post",
             content=content,
             description="Test description",
             date="2024-01-01",
             url="https://example.com"
         )
-        self.assertIn("Complete Article", result)
+        self.assertIn("Complete Post", result)
         self.assertIn("Full content", result)
         self.assertIn("Test description", result)
         self.assertIn("2024-01-01", result)
@@ -89,26 +89,26 @@ class TestArticleRenderer(unittest.TestCase):
 
     def test_render_without_optional_parameters(self):
         """Test rendering without optional parameters."""
-        renderer = ArticleRenderer(self.config)
+        renderer = PostView(self.config)
         content = BeautifulSoup("<p>Minimal content</p>", 'html.parser')
         result = renderer.render(
-            title="Minimal Article",
+            title="Minimal Post",
             content=content
         )
-        self.assertIn("Minimal Article", result)
+        self.assertIn("Minimal Post", result)
         self.assertIn("Minimal content", result)
         # Optional parameters should not appear
         self.assertNotIn("2024", result.split("<time>")[0] if "<time>" in result else result)
 
     def test_render_with_complex_content(self):
         """Test rendering with complex HTML content."""
-        renderer = ArticleRenderer(self.config)
+        renderer = PostView(self.config)
         content = BeautifulSoup(
             "<h2>Subtitle</h2><p>Paragraph 1</p><p>Paragraph 2</p>",
             'html.parser'
         )
         result = renderer.render(
-            title="Complex Article",
+            title="Complex Post",
             content=content
         )
         self.assertIn("Subtitle", result)
@@ -117,10 +117,10 @@ class TestArticleRenderer(unittest.TestCase):
 
     def test_render_preserves_html_structure(self):
         """Test that rendering preserves HTML structure."""
-        renderer = ArticleRenderer(self.config)
+        renderer = PostView(self.config)
         content = BeautifulSoup("<div><ul><li>Item 1</li><li>Item 2</li></ul></div>", 'html.parser')
         result = renderer.render(
-            title="List Article",
+            title="List Post",
             content=content
         )
         self.assertIn("<ul>", result)
@@ -134,7 +134,7 @@ class TestArticleRenderer(unittest.TestCase):
             'searchpath': self.temp_dir,
             'static_url': '/custom/static/path'
         }
-        renderer = ArticleRenderer(custom_config)
+        renderer = PostView(custom_config)
         content = BeautifulSoup("<p>Content</p>", 'html.parser')
         result = renderer.render(title="Test", content=content)
         self.assertIn("/custom/static/path", result)

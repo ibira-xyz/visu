@@ -1,7 +1,7 @@
 """A simple local server for development and testing purposes."""
 from flask import Flask
 
-from views import IndexView, ArticleView
+from views import IndexView, PostView
 from controllers import PostController, IndexController
 from backend import get_backend
 
@@ -13,7 +13,7 @@ index_controller = IndexController()
 index_view = IndexView()
 
 post_controller = PostController(backend)
-article_view = ArticleView()
+post_view = PostView()
 
 @app.route("/")
 def home():
@@ -25,9 +25,9 @@ def home():
     )
 
 @app.route("/post/<slug>")
-def article(slug):
-    """Route handler for a sample article page"""
-    return article_view.render(
+def post(slug):
+    """Route handler for a sample post page"""
+    return post_view.render(
         post_controller.run(
             backend.get_post(slug))
         )

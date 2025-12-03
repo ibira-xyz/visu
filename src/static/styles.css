@@ -57,39 +57,39 @@
   --color-cordovan-900: #edd5d5;
 }
 
-/* Semantic classes for article content */
+/* Semantic classes for post content */
 @layer components {
-  .article-paragraph {
+  .post-paragraph {
     @apply text-dark-moss-green indent-8 text-justify mx-32 text-lg;
   }
 
-  .article-heading-1 {
+  .post-heading-1 {
     @apply text-dark-moss-green mx-20;
   }
 
-  .article-heading-2 {
+  .post-heading-2 {
     @apply text-cordovan-400 font-bold mt-8 mb-4 text-center text-xl;
   }
 
-  .article-heading-3 {
+  .post-heading-3 {
     @apply text-dark-moss-green;
   }
 
-  .article-list {
+  .post-list {
     @apply text-dark-moss-green;
   }
 
-  .article-list-item {
+  .post-list-item {
     @apply text-dark-moss-green;
   }
 
-  .article-link {
+  .post-link {
     @apply text-dark-moss-green-600 hover:underline;
   }
-  .article-image-caption {
+  .post-image-caption {
     @apply text-center text-xs text-seasalt-300 mt-2
   }
-  .article-image-figure {
+  .post-image-figure {
     @apply justify-center mb-8 mt-8
   }
 }
