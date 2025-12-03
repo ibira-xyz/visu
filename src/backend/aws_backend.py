@@ -12,12 +12,10 @@ config = AppConfig()
 
 class AwsBackend(Backend):
     """A reader that reads content from AWS S3 and DynamoDB."""
-    def __init__(self, remote_url):
+    def __init__(self):
         init_start = time.time()
         logger.info("Initializing AwsBackend")
-
-        self.remote_url = remote_url
-
+        
         logger.info("Creating DynamoDB resource")
         self.dynamodb = boto3.resource('dynamodb')
 
