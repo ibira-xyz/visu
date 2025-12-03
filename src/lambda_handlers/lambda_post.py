@@ -12,7 +12,8 @@ article_view = ArticleView()
 
 def handler(event, _context):
     """AWS Lambda handler function for article pages"""
-    slug = event['pathParameters']['slug']
+    path_params = event.get('pathParameters') or {}
+    slug = path_params.get('slug')
     html_content = article_view.render(
         post_controller.run(
             backend.get_post(slug))
