@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="{{ static_url + 'assets/og-image.png' }}" />
-    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:image" content="{{ '/' + banner.path }}" />
+    <meta property="og:url" content="{{ endpoint }}/{{ slug }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:site_name" content="ibira" />
     <meta property="og:locale" content="pt_BR" />
     {# <meta property="og:locale_alternate" content="en_US" /> #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="{{ static_url + 'output.css' }}" />
+    <link rel="stylesheet" href="/static/output.css" />
   </head>
   <body class="bg-seasalt">
     <div class="container mx-auto p-4">
