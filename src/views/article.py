@@ -19,5 +19,6 @@ class ArticleView(View):
             date=context.date,
             author=context.author,
             banner=context.banner,
-            tags=context.tags
+            tags=context.tags,
+            cdn_url=self.cdn_url
         )

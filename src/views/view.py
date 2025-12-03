@@ -11,6 +11,7 @@ class View(ABC):
     """Abstract base class for all views."""
     def __init__(self):
         self.template_env = Environment(loader=FileSystemLoader(config.get('searchpath', 'templates')))
+        self.cdn_url = config.get('static_url', '')
 
     @abstractmethod
     def render(self, context: namedtuple) -> str:

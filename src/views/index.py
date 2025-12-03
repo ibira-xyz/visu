@@ -9,4 +9,4 @@ class IndexView(View):
     
     def render(self, items=None):
         """Render the template with the given context."""
-        return self.template.render(items=items)
+        return self.template.render(items=items, cdn_url=self.cdn_url)

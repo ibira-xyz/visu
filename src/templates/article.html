@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="{{ '/' + banner.path }}" />
+    <meta property="og:image" content="{{ cdn_url + banner.path }}" />
     <meta property="og:url" content="{{ endpoint }}/{{ slug }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:site_name" content="ibira" />
@@ -36,7 +36,7 @@
         <header class="mb-8">
           {% if banner %}
           <figure class="mb-6">
-            <img src="{{ '/' + banner.path }}" alt="{{ banner.description }}" class="w-full h-auto" />
+            <img src="{{ cdn_url + banner.path }}" alt="{{ banner.description }}" class="w-full h-auto" />
             {% if banner.legend %}
             <figcaption class="article-image-caption">{{ banner.legend }}</figcaption>
             {% endif %}
