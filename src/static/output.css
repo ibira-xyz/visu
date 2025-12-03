@@ -259,6 +259,9 @@
   .flex {
     display: flex;
   }
+  .table {
+    display: table;
+  }
   .h-auto {
     height: auto;
   }
