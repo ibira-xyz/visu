@@ -3,19 +3,24 @@ from flask import Flask
 from lorem_text import lorem
 from yaml import load, SafeLoader
 
-from renderers import IndexRenderer, ArticleRenderer
-from interpreters.markdown import MarkdownInterpreter
-from readers.local_reader import LocalReader 
+from views import IndexView, ArticleView
+from controllers import PostController
+from backend import get_backend
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 with open("config/local.yaml", "r", encoding="utf-8") as f:
     config = load(f, Loader=SafeLoader)
 
+backend = get_backend(config)
+article_view = ArticleView(config['searchpath'])
+post_controller = PostController(backend)
+index_view = IndexView(config['searchpath'])
+
 @app.route("/")
 def home():
     """Route handler for the home page"""
-    return IndexRenderer(config).render(
+    return index_view.render(
         items=[{
         "title": "Particionando o Espaço de Entrada em Redes Neurais",
         "description": lorem.words(25),
@@ -34,17 +39,13 @@ def home():
     }]
     )
 
-@app.route("/article")
-def article():
+@app.route("/post/<slug>")
+def article(slug):
     """Route handler for a sample article page"""
-    
-    return ArticleRenderer(config).render(
-        title="Particionando o Espaço de Entrada em Redes Neurais",
-        content=MarkdownInterpreter().interpret(LocalReader("static/assets/content.md").read()),
-        description="Um artigo sobre particionamento de espaço em redes neurais",
-        date="12 de novembro de 2025"
-    )
-
+    return article_view.render(
+        post_controller.run(
+            backend.get_post(slug))
+        )
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
