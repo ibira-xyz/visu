@@ -1,55 +1,20 @@
-<html>
-  <head>
-    <title>ibira</title>
-    <meta charset="UTF-8" />
-    <meta property="og:title" content="ibira" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ cdn_url }}static/assets/drawing.svg" />
-    <meta property="og:url" content="{{ url }}" />
-    <meta property="og:description" content="A collection of my projects and writings." />
-    <meta property="og:site_name" content="ibira" />
-    <meta property="og:locale" content="pt_BR" />
-    {# <meta property="og:locale_alternate" content="en_US" /> #}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="{{ cdn_url }}static/output.css" />
-  </head>
-  <body class="bg-seasalt">
-    <div class="container mx-auto p-4">
-      <nav class="mb-8 flex justify-center">
-        <div class="flex w-11/12 justify-between items-center">
-          <div class="flex items-center space-x-4">
-            <h1 id="site-title" class="text-dark-moss-green text-6xl font-bold">ibira</h1>
-            <span aria-hidden="true" class="invisible text-6xl font-bold">ibira</span>
-          </div>
-          <div class="flex space-x-6">
-            <a href="/sobre" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">sobre</a>
-            <a href="/projetos" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">projetos</a>
-            <a href="/now" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">now</a>
-          </div>
+{% block content %}
+<div class="flex flex-col gap-4 mb-8">
+  {% for item in items %}
+  <a href="{{ item.link }}" class="w-full">
+    <div class="bg-white shadow-md overflow-hidden relative group" style="height: 30vh;">
+      <div class="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
+      <div class="flex h-full">
+        <img class="w-2/5 object-cover" src="{{ cdn_url + item.banner.path }}" alt="{{ item.title }}" />
+        <div class="w-3/5 p-6 flex flex-col justify-center">
+          <h2 class="text-2xl font-semibold mb-2">{{ item.title }}</h2>
+          <p class="text-gray-600">{{ item.description }}</p>
         </div>
-      </nav>
-
-      <div class="flex flex-col gap-4 mb-8">
-        {% for item in items %}
-        <a href="{{ item.link }}" class="w-full">
-          <div class="bg-white shadow-md overflow-hidden relative group" style="height: 30vh;">
-            <div class="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
-            <div class="flex h-full">
-              <img class="w-2/5 object-cover" src="{{ cdn_url + item.banner.path }}" alt="{{ item.title }}" />
-              <div class="w-3/5 p-6 flex flex-col justify-center">
-                <h2 class="text-2xl font-semibold mb-2">{{ item.title }}</h2>
-                <p class="text-gray-600">{{ item.description }}</p>
-              </div>
-            </div>
-          </div>
-        </a>
-        {% endfor %}
       </div>
     </div>
-    </footer class="bg-dark-moss-green-100 text-dark-moss-green-700 py-6 mt-12">
-      <div class="container mx-auto px-4 text-center py-8">
-        <p>&copy; 2025 ibira. Todos os direitos reservados.</p>
-      </div>
-  </body>
-</html>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
