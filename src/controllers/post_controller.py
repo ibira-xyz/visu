@@ -1,29 +1,12 @@
 """Controller for processing post content into Post entities."""
 
-import datetime
 from bs4 import BeautifulSoup
 
 from config.app_config import AppConfig
 from models import Post
-from parsers import parse_markdown
-
+from parsers import parse_markdown, process_date
 
 config = AppConfig()
-
-dict_mes = {
-    1: "janeiro",
-    2: "fevereiro",
-    3: "março",
-    4: "abril",
-    5: "maio",
-    6: "junho",
-    7: "julho",
-    8: "agosto",
-    9: "setembro",
-    10: "outubro",
-    11: "novembro",
-    12: "dezembro"
-}
 
 class PostController:
     """Processes post content with mixed markdown and image elements."""
@@ -62,13 +45,9 @@ class PostController:
 
         return str(soup)
 
-    def process_date(self, date: datetime.date):
-        """Converts YYYY-MM-DD date to human readable date"""
-        if isinstance(date, str):
-            date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-        return f'{date.day} de {dict_mes[date.month]} de {date.year}'
-
     def run(self, post: Post) -> Post:
         """Process raw post content into a Post entity."""
         processed_content = self._process_content(post.content_metadata)
-        return {'post': post, 'post_content': processed_content}
+        return {'post': post,
+                'post_content': processed_content,
+                'formatted_date': process_date(post.date)}
