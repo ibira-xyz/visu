@@ -2,8 +2,8 @@
 import logging
 import time
 from backend import get_backend
-from controllers import IndexController, PostController
-from views import IndexView, PostView
+from controllers import IndexController
+from views import render_index
 
 # Configure logging
 logger = logging.getLogger()
@@ -16,13 +16,6 @@ backend = get_backend()
 logger.info("Backend initialized in %.3f seconds", time.time() - start_time)
 
 index_controller = IndexController()
-logger.info("IndexController initialized in %.3f seconds", time.time() - start_time)
-
-index_view = IndexView()
-logger.info("IndexView initialized in %.3f seconds", time.time() - start_time)
-
-post_controller = PostController(backend)
-post_view = PostView()
 logger.info("All components initialized in %.3f seconds", time.time() - start_time)
 
 
@@ -65,7 +58,7 @@ def handler(_event, _context):
         render_start = time.time()
         logger.info("Starting view rendering")
 
-        html_content = index_view.render(**controller_result)
+        html_content = render_index(**controller_result)
         render_time = time.time() - render_start
         logger.info("View rendering completed in %.3f seconds", render_time)
 

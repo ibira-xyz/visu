@@ -1,20 +1,17 @@
 """AWS Lambda handler for the home route"""
 from backend import get_backend
-from controllers import IndexController, PostController
-from views import IndexView, PostView
+from controllers import PostController
+from views import render_post
 
 backend = get_backend()
-index_controller = IndexController()
-index_view = IndexView()
 
 post_controller = PostController(backend)
-post_view = PostView()
 
 def handler(event, _context):
     """AWS Lambda handler function for post pages"""
     path_params = event.get('pathParameters') or {}
     slug = path_params.get('slug')
-    html_content = post_view.render(
+    html_content = render_post(
         post_controller.run(
             backend.get_post(slug))
         )
