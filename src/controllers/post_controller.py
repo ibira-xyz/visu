@@ -4,7 +4,7 @@ import datetime
 from bs4 import BeautifulSoup
 
 from config.app_config import AppConfig
-from models.post import Post
+from models import Post
 from parsers import parse_markdown
 
 
