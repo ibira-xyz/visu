@@ -1,12 +1,6 @@
-"""Renders the index.html template with provided context."""
-from views.view import View
+"""Functional index view using shared template renderer."""
+from views.template_renderer import template_renderer
 
-class IndexView(View):
-    """Renders the index.html template with provided context."""
-    def __init__(self):
-        super().__init__()
-        self.template = self.template_env.get_template('index.html')
-
-    def render(self, items=None):
-        """Render the template with the given context."""
-        return self.template.render(items=items, cdn_url=self.cdn_url)
+def render_index(context=None):
+    """Render the index.html template with provided context."""
+    return template_renderer.render_template('index.html', items=context)

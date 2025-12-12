@@ -1,23 +1,15 @@
-"""Renders the post.html template with provided context."""
-from models.post import Post
-from views.view import View
+"""Functional post view using shared template renderer."""
+from views.template_renderer import template_renderer
 
-
-class PostView(View):
-    """Renders the post.html template with provided context."""
-    def __init__(self):
-        super().__init__()
-        self.template = self.template_env.get_template('post.html')
-    def render(self, context: Post):
-        """Render the template with the given context."""
-        return self.template.render(
-            slug=context.slug,
-            title=context.title,
-            content=context.content,
-            description=context.description,
-            date=context.date,
-            author=context.author,
-            banner=context.banner,
-            tags=context.tags,
-            cdn_url=self.cdn_url
-        )
+def render_post(context=None):
+    """Render the post.html template with provided context."""
+    return template_renderer.render_template('post.html',
+                                             slug=context.slug,
+                                             title=context.title,
+                                             content=context.content,
+                                             description=context.description,
+                                             date=context.date,
+                                             author=context.author,
+                                             banner=context.banner,
+                                             tags=context.tags
+    )
