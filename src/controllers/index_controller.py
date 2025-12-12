@@ -36,4 +36,4 @@ class IndexController:
             "IndexController completed processing %d posts in %.3f seconds",
             len(processed_data), process_time)
 
-        return {"items": processed_data}
+        return {"context": processed_data}
