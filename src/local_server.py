@@ -13,7 +13,7 @@ backend = get_backend()
 def home():
     """Route handler for the home page"""
     return render_index(
-        **index_controller.get_posts(
+        **index_controller.process_posts(
             backend.get_all_posts()
         )
     )

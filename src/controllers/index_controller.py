@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 app_config = AppConfig()
 
 
-def get_posts(index_data: list[Post]) -> dict:
+def process_posts(index_data: list[Post]) -> dict:
     """Fetch data for the index view."""
     process_start = time.time()
     logger.info("IndexController starting to process posts")
