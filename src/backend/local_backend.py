@@ -24,7 +24,7 @@ class LocalBackend(Backend):
         with open(content_uri, 'r', encoding='utf-8') as file:
             return file.read()
 
-    def fetch_index_data(self):
+    def get_all_posts(self):
         """Fetch data for the index view."""
         index_files = glob(f"{self.base_path}/*.yml")
         for file_path in index_files:

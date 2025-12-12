@@ -18,7 +18,7 @@ def home():
     """Route handler for the home page"""
     return render_index(
         **index_controller.run(
-            backend.fetch_index_data()
+            backend.get_all_posts()
         )
     )
 

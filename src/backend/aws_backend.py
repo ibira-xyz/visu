@@ -65,7 +65,7 @@ class AwsBackend(Backend):
 
         return content
 
-    def fetch_index_data(self):
+    def get_all_posts(self):
         scan_start = time.time()
         logger.info("Starting DynamoDB table scan for index data")
 

@@ -31,7 +31,7 @@ def handler(_event, _context):
 
         # Monitor fetch progress with periodic updates
         index_data = []
-        data_generator = backend.fetch_index_data()
+        data_generator = backend.get_all_posts()
 
         for i, item in enumerate(data_generator):
             if time.time() - fetch_start > 8.0:  # If taking more than 8 seconds

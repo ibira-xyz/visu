@@ -13,5 +13,5 @@ class Backend(ABC):
         """Read content by its name or path."""
 
     @abstractmethod
-    def fetch_index_data(self):
+    def get_all_posts(self):
         """Fetch data for the index view."""
