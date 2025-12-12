@@ -12,7 +12,7 @@ tags:
   - YAML
   - Configuration
   - Data Serialization
-content:
+content_metadata:
   - type: markdown
     path: static/assets/content.md
   - type: image
