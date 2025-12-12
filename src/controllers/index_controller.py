@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 app_config = AppConfig()
 
 
-def get_posts(index_data):
+def get_posts(index_data: list[Post]) -> dict:
     """Fetch data for the index view."""
     process_start = time.time()
     logger.info("IndexController starting to process posts")
@@ -18,17 +18,7 @@ def get_posts(index_data):
     for i, item in enumerate(index_data):
         if i > 0 and i % 5 == 0:  # Log progress every 5 items
             logger.info("Processed %d/%d posts", i, len(index_data))
-        processed_data.append(
-            Post(title=item.get("title"),
-                 content=item.get("content"),
-                 description=item.get("description"),
-                 date=item.get("date"),
-                 author=item.get("author"),
-                 banner=item.get("banner"),
-                 slug=item.get("slug"),
-                 tags=item.get("tags"),
-            )
-        )
+        processed_data.append(item)
 
     process_time = time.time() - process_start
     logger.info(
