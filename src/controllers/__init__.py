@@ -1,4 +1,4 @@
 from controllers.post_controller import PostController
-from controllers.index_controller import IndexController
+from controllers import index_controller
 
-__all__ = ['PostController', 'IndexController']
+__all__ = ['PostController', 'index_controller']

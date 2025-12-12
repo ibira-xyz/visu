@@ -2,14 +2,12 @@
 from flask import Flask
 
 from views import render_index, render_post
-from controllers import PostController, IndexController
+from controllers import PostController, index_controller
 from backend import get_backend
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 backend = get_backend()
-
-index_controller = IndexController()
 
 post_controller = PostController(backend)
 
@@ -17,7 +15,7 @@ post_controller = PostController(backend)
 def home():
     """Route handler for the home page"""
     return render_index(
-        **index_controller.run(
+        **index_controller.get_posts(
             backend.get_all_posts()
         )
     )
