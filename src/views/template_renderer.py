@@ -13,6 +13,7 @@ class TemplateRenderer:
                 loader=FileSystemLoader(config.get('searchpath', 'templates'))
             )
             self.cdn_url = config.get('static_url', '')
+            self.base_url = config.get("base_url", '')
 
     def __new__(cls):
         if cls._instance is None:
@@ -22,7 +23,9 @@ class TemplateRenderer:
     def render_template(self, template_name: str, **kwargs):
         """Render a template with the given context."""
         template = self.template_env.get_template(template_name)
-        return template.render(cdn_url=self.cdn_url, **kwargs)
+        return template.render(cdn_url=self.cdn_url,
+                               base_url=self.base_url,
+                               **kwargs)
 
 # Create a shared instance for easy importing
 template_renderer = TemplateRenderer()
