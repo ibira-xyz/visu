@@ -68,16 +68,7 @@ class PostController:
             date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
         return f'{date.day} de {dict_mes[date.month]} de {date.year}'
 
-    def run(self, document: dict) -> Post:
+    def run(self, post: Post) -> Post:
         """Process raw post content into a Post entity."""
-        processed_content = self._process_content(document['content'])
-        return Post(
-            title=document.get('title', ''),
-            content=processed_content,
-            description=document.get('description', ''),
-            date=self.process_date(document.get('date', '')),
-            author=document.get('author', {}),
-            banner=document.get('banner', ''),
-            slug=document.get('slug', ''),
-            tags=document.get('tags', []),
-    )
+        processed_content = self._process_content(post.content_metadata)
+        return {'post': post, 'post_content': processed_content}

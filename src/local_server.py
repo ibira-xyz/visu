@@ -24,7 +24,7 @@ def home():
 def post(slug):
     """Route handler for a sample post page"""
     return render_post(
-        post_controller.run(
+        **post_controller.run(
             backend.get_post(slug))
         )
 
