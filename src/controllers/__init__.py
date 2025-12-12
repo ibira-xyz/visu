@@ -1,4 +1,6 @@
-from controllers.post_controller import PostController
-from controllers import index_controller
+"""
+Docstring for controllers
+"""
+from controllers import index_controller, post_controller
 
-__all__ = ['PostController', 'index_controller']
+__all__ = ['post_controller', 'index_controller']

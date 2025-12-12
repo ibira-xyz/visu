@@ -2,14 +2,12 @@
 from flask import Flask
 
 from views import render_index, render_post
-from controllers import PostController, index_controller
+from controllers import post_controller, index_controller
 from backend import get_backend
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 backend = get_backend()
-
-post_controller = PostController(backend)
 
 @app.route("/")
 def home():
@@ -24,8 +22,9 @@ def home():
 def post(slug):
     """Route handler for a sample post page"""
     return render_post(
-        **post_controller.run(
-            backend.get_post(slug))
+        **post_controller.process_post(
+            backend.get_post(slug),
+            backend)
         )
 
 if __name__ == "__main__":
