@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Lambda function for index/home route
+  lambda-index:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+      args:
+        LAMBDA_FILE: lambda_index.py
+        STAGE: local
+    ports:
+      - "9000:8080"
+    environment:
+      - AWS_LAMBDA_FUNCTION_NAME=visu-index
+      - AWS_REGION=us-east-1
+      - IBIRA_PATH=/var/task/config/config.yaml
+    volumes:
+      - ./src/config/local.yaml:/var/task/config/config.yaml:ro
+      - ./src/static:/var/task/static:ro
+    networks:
+      - visu-network
+
+  # Lambda function for post route
+  lambda-post:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+      args:
+        LAMBDA_FILE: lambda_post.py
+        STAGE: local
+    ports:
+      - "9001:8080"
+    environment:
+      - AWS_LAMBDA_FUNCTION_NAME=visu-post
+      - AWS_REGION=us-east-1
+      - IBIRA_PATH=/var/task/config/config.yaml
+    volumes:
+      - ./src/config/local.yaml:/var/task/config/config.yaml:ro
+      - ./src/static:/var/task/static:ro
+    networks:
+      - visu-network
+
+  # Lambda adapter - converts HTTP to Lambda events (simulates API Gateway)
+  lambda-adapter:
+    build:
+      context: ./lambda-adapter
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    depends_on:
+      - lambda-index
+      - lambda-post
+    networks:
+      - visu-network
+
+  # Nginx as reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./src/static:/usr/share/nginx/html/static:ro
+    depends_on:
+      - lambda-adapter
+    networks:
+      - visu-network
+
+networks:
+  visu-network:
+    driver: bridge
