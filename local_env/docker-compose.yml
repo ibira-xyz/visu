@@ -4,7 +4,7 @@ services:
   # Lambda function for index/home route
   lambda-index:
     build:
-      context: ./src
+      context: ../src
       dockerfile: Dockerfile
       args:
         LAMBDA_FILE: lambda_index.py
@@ -16,15 +16,15 @@ services:
       - AWS_REGION=us-east-1
       - IBIRA_PATH=/var/task/config/config.yaml
     volumes:
-      - ./src/config/local.yaml:/var/task/config/config.yaml:ro
-      - ./src/static:/var/task/static:ro
+      - ../src/config/local.yaml:/var/task/config/config.yaml:ro
+      - ../src/static:/var/task/static:ro
     networks:
       - visu-network
 
   # Lambda function for post route
   lambda-post:
     build:
-      context: ./src
+      context: ../src
       dockerfile: Dockerfile
       args:
         LAMBDA_FILE: lambda_post.py
@@ -36,8 +36,8 @@ services:
       - AWS_REGION=us-east-1
       - IBIRA_PATH=/var/task/config/config.yaml
     volumes:
-      - ./src/config/local.yaml:/var/task/config/config.yaml:ro
-      - ./src/static:/var/task/static:ro
+      - ../src/config/local.yaml:/var/task/config/config.yaml:ro
+      - ../src/static:/var/task/static:ro
     networks:
       - visu-network
 
@@ -61,7 +61,7 @@ services:
       - "8080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./src/static:/usr/share/nginx/html/static:ro
+      - ../src/static:/usr/share/nginx/html/static:ro
     depends_on:
       - lambda-adapter
     networks:
