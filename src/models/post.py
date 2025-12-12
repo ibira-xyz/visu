@@ -3,7 +3,7 @@ from collections import namedtuple
 
 Post = namedtuple('Post', [
     'title',
-    'content',
+    'content_metadata',
     'description',
     'date',
     'author',
