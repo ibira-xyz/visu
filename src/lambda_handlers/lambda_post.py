@@ -10,10 +10,11 @@ def handler(event, _context):
     path_params = event.get('pathParameters') or {}
     slug = path_params.get('slug')
     html_content = render_post(
-        post_controller.process_post(
-            backend.get_post(slug)),
+        **post_controller.process_post(
+            backend.get_post(slug),
             backend
         )
+    )
     return {
         'statusCode': 200,
         'headers': {
