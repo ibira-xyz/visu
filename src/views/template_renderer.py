@@ -20,7 +20,7 @@ class TemplateRenderer:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def render_template(self, template_name: str, **kwargs):
+    def render_template(self, template_name: str, **kwargs) -> str:
         """Render a template with the given context."""
         template = self.template_env.get_template(template_name)
         return template.render(cdn_url=self.cdn_url,

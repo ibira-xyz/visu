@@ -15,6 +15,6 @@ or IBIRA_PATH environment variable.")
         with open(config_path, "r", encoding="utf-8") as f:
             self.config = load(f, Loader=SafeLoader)
 
-    def get(self, key: str, default=None):
+    def get(self, key: str, default=None) -> any:
         """Get a configuration value by key."""
         return self.config.get(key, default)

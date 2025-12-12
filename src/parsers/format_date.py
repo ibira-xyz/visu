@@ -16,7 +16,7 @@ dict_mes = {
     12: "dezembro"
 }
 
-def process_date(date: datetime.date):
+def process_date(date: datetime.date) -> str:
     """Converts YYYY-MM-DD date to human readable date"""
     if isinstance(date, str):
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
