@@ -34,9 +34,8 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-dark-moss-green: #404b0c;
-    --color-dark-moss-green-100: #0d0f02;
     --color-dark-moss-green-600: #7f9318;
-    --color-dark-moss-green-700: #bddb25;
+    --color-sage-900: #f0f0e8;
     --color-seasalt: #fafafa;
     --color-seasalt-300: #969696;
     --color-eerie-black-700: #7d7d7d;
@@ -280,11 +279,11 @@
   .w-3\/5 {
     width: calc(3/5 * 100%);
   }
+  .w-8\/12 {
+    width: calc(8/12 * 100%);
+  }
   .w-10\/12 {
     width: calc(10/12 * 100%);
-  }
-  .w-11\/12 {
-    width: calc(11/12 * 100%);
   }
   .w-full {
     width: 100%;
@@ -348,11 +347,11 @@
   .bg-cordovan-900 {
     background-color: var(--color-cordovan-900);
   }
-  .bg-dark-moss-green-100 {
-    background-color: var(--color-dark-moss-green-100);
-  }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
+  }
+  .bg-sage-900 {
+    background-color: var(--color-sage-900);
   }
   .bg-seasalt {
     background-color: var(--color-seasalt);
@@ -413,9 +412,6 @@
   }
   .text-dark-moss-green {
     color: var(--color-dark-moss-green);
-  }
-  .text-dark-moss-green-700 {
-    color: var(--color-dark-moss-green-700);
   }
   .text-eerie-black-700 {
     color: var(--color-eerie-black-700);
