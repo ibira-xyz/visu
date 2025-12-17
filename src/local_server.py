@@ -4,12 +4,14 @@ from flask import Flask
 from views import render_index, render_post
 from controllers import post_controller, index_controller
 from backend import get_backend
+from decorators import safe_response
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 backend = get_backend()
 
 @app.route("/")
+@safe_response
 def home():
     """Route handler for the home page"""
     return render_index(
@@ -19,6 +21,7 @@ def home():
     )
 
 @app.route("/post/<slug>")
+@safe_response
 def post(slug):
     """Route handler for a sample post page"""
     return render_post(
