@@ -12,7 +12,6 @@ def get_backend() -> Backend:
 
     if backend_type == 'local':
         return LocalBackend(config.get('base_path', ''))
-    elif backend_type == 'aws':
+    if backend_type == 'aws':
         return AwsBackend()
-    else:
-        raise ValueError(f"Unknown backend type: {backend_type}")
+    raise ValueError(f"Unknown backend type: {backend_type}")
