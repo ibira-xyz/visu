@@ -16,10 +16,10 @@ def safe_response(response):
     """Decorator to handle exceptions and return safe HTTP responses"""
     def safe_response_decorator(func):
         @wraps(func)
-        def wrapper(**args):
+        def wrapper(*args, **kwargs):
             logger = logging.getLogger(func.__name__)
             try:
-                return func(**args)
+                return func(*args, **kwargs)
             except NotFound:
                 msg = format_exc()
                 logger.warning(msg)
