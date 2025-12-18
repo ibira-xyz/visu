@@ -1,8 +1,8 @@
-from flask import Response
+"""Module providing response formatters for different frameworks"""
 
 def flask_response(content, status_code):
     """Helper function to create a Flask Response"""
-    return Response(response=content, status=status_code, mimetype='text/html')
+    return content,status_code
 
 def lambda_response(content, status_code):
     """Helper function to create a Lambda HTTP response"""
