@@ -31,6 +31,7 @@ COPY config/ ${LAMBDA_TASK_ROOT}/config/
 COPY controllers/ ${LAMBDA_TASK_ROOT}/controllers/
 COPY models/ ${LAMBDA_TASK_ROOT}/models/
 COPY parsers/ ${LAMBDA_TASK_ROOT}/parsers/
+COPY responses/ ${LAMBDA_TASK_ROOT}/responses/
 COPY templates/ ${LAMBDA_TASK_ROOT}/templates/
 COPY views/ ${LAMBDA_TASK_ROOT}/views/
 COPY config/${STAGE}.yaml ${LAMBDA_TASK_ROOT}/config/config.yaml
