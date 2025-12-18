@@ -1,12 +1,12 @@
 """AWS Lambda handler for the home route"""
 from backend import get_backend
 from controllers import post_controller
-from views import render_post, render_not_found, render_server_error
-from decorators import safe_response
+from views import render_post
+from responses import safe_response, lambda_response
 
 backend = get_backend()
 
-@safe_response
+@safe_response(lambda_response)
 def handler(event, _context):
     """AWS Lambda handler function for post pages"""
     path_params = event.get('pathParameters') or {}

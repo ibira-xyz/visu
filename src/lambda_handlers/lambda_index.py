@@ -4,7 +4,7 @@ import time
 from backend import get_backend
 from controllers import index_controller
 from views import render_index
-from decorators import safe_response
+from responses import safe_response, lambda_response
 
 # Configure logging
 logger = logging.getLogger()
@@ -18,7 +18,7 @@ logger.info("Backend initialized in %.3f seconds", time.time() - start_time)
 logger.info("All components initialized in %.3f seconds", time.time() - start_time)
 
 
-@safe_response
+@safe_response(lambda_response)
 def handler(_event, _context):
     """AWS Lambda handler function"""
     handler_start = time.time()
