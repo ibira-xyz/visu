@@ -264,6 +264,9 @@
   .table {
     display: table;
   }
+  .h-\[70vh\] {
+    height: 70vh;
+  }
   .h-auto {
     height: auto;
   }
@@ -401,6 +404,10 @@
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
