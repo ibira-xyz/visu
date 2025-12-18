@@ -1,11 +1,14 @@
 """"AWS Backend Module."""
 import logging
+from typing import Generator
+
 import boto3
 from boto3.dynamodb.conditions import Key
 from werkzeug.exceptions import NotFound, InternalServerError
 
 from backend.backend import Backend
 from config.app_config import AppConfig
+from models import Post
 
 logger = logging.getLogger(__name__)
 boto3.set_stream_logger('boto3.resources', logging.INFO)
@@ -22,21 +25,21 @@ class AwsBackend(Backend):
             logger.error("Error initializing AWS resources: %s", e)
             raise InternalServerError("Failed to initialize AWS resources.") from e
 
-    def get_post(self, slug):
+    def get_post(self, slug: str) -> Post:
         try: 
             table = self.dynamodb.Table('PostContent')
             response = table.query(KeyConditionExpression=Key('PostID').eq(slug))
 
             item = response.get('Items')
             if item:
-                return {'slug': slug, **item[0]['Content']}
+                return Post(slug=slug, **item[0]['Content'])
         except Exception as e:
             logger.error("Error fetching post '%s': %s", slug, e)
             raise InternalServerError(f"An error occurred while reading the post '{slug}'.") from e
         # If got here, no item found
         raise NotFound(f"Post with slug '{slug}' not found.")
 
-    def get_content(self, content_uri):
+    def get_content(self, content_uri: str) -> str:
         try:
             bucket = self.bucket_name
             key = content_uri.lstrip('/')
@@ -55,15 +58,14 @@ class AwsBackend(Backend):
             raise InternalServerError(
                 f"An error occurred while reading the content '{content_uri}'.") from e
 
-    def get_all_posts(self):
+    def get_all_posts(self) -> Generator[Post, None, None]:
         try:
             table = self.dynamodb.Table('PostContent')
             response = table.scan()
             items = response.get('Items', [])
 
-            for i, item in enumerate(items):
-                if i > 0 and i % 10 == 0:  # Log progress every 10 items
-                    yield {'slug': item['PostID'], **item['Content']}
+            for item in items:
+                yield Post(slug=item['PostID'], **item['Content'])
         except Exception as e:
             logger.error("Error fetching all posts: %s", e)
             raise InternalServerError("An error occurred while reading the posts.") from e
