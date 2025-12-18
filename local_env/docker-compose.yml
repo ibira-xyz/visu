@@ -13,7 +13,7 @@ services:
       - "9000:8080"
     environment:
       - AWS_LAMBDA_FUNCTION_NAME=visu-index
-      - AWS_REGION=us-east-1
+      - AWS_REGION=sa-east-1
       - IBIRA_PATH=/var/task/config/config.yaml
     volumes:
       - ../src/config/local.yaml:/var/task/config/config.yaml:ro
@@ -33,7 +33,7 @@ services:
       - "9001:8080"
     environment:
       - AWS_LAMBDA_FUNCTION_NAME=visu-post
-      - AWS_REGION=us-east-1
+      - AWS_REGION=sa-east-1
       - IBIRA_PATH=/var/task/config/config.yaml
     volumes:
       - ../src/config/local.yaml:/var/task/config/config.yaml:ro
