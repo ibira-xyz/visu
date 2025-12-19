@@ -1,13 +1,13 @@
 """Module defining the Post entity."""
-from collections import namedtuple
+from typing import NamedTuple
 
-Post = namedtuple('Post', [
-    'title',
-    'content_metadata',
-    'description',
-    'date',
-    'author',
-    'banner',
-    'slug',
-    'tags'
-])
+class Post(NamedTuple):
+    """Data structure representing a blog post."""
+    title: str
+    content_metadata: list[dict]
+    description: str
+    date: str
+    author: str
+    banner: str
+    slug: str
+    tags: list[str]
