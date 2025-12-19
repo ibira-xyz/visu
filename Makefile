@@ -7,9 +7,11 @@ help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 build: ## Build Docker images
+	cd local_env && \
 	docker-compose build
 
 up: ## Start all services
+	cd local_env && \
 	docker-compose up -d
 	@echo ""
 	@echo "✅ Services started!"
@@ -17,12 +19,15 @@ up: ## Start all services
 	@echo "📝 View logs with: make logs"
 
 down: ## Stop all services
+	cd local_env && \
 	docker-compose down
 
 logs: ## Show logs from all services
+	cd local_env && \
 	docker-compose logs -f
 
 clean: ## Remove containers, networks, and volumes
+	cd local_env && \
 	docker-compose down -v
 	docker system prune -f
 
