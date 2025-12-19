@@ -1,5 +1,7 @@
 .PHONY: help build up down logs clean rebuild test-index test-post
 
+SLUG ?= post
+
 help: ## Show this help message
 	@echo 'Usage: make [target]'
 	@echo ''
@@ -40,7 +42,7 @@ test-index: ## Test index Lambda directly
 test-post: ## Test post Lambda directly (example slug: sample-post)
 	@echo "Testing post Lambda..."
 	curl -XPOST "http://localhost:9001/2015-03-31/functions/function/invocations" \
-		-d '{"pathParameters":{"slug":"sample-post"}}'
+		-d '{"pathParameters":{"slug":"$(SLUG)"}}'
 
 test-nginx: ## Test through Nginx (full stack)
 	@echo "Testing index through Nginx..."
