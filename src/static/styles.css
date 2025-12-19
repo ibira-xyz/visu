@@ -92,4 +92,34 @@
   .post-image-figure {
     @apply justify-center mb-8 mt-8
   }
+
+  /* Physics simulation styling */
+  .post-simulation {
+    @apply my-8 flex justify-center;
+  }
+
+  .post-simulation-figure {
+    @apply my-8 flex flex-col items-center;
+  }
+
+  .post-simulation canvas {
+    @apply border-2 border-gray-300 rounded-lg shadow-md;
+  }
+
+  .post-simulation-caption {
+    @apply mt-3 text-center text-sm text-seasalt-300 italic max-w-2xl;
+  }
+
+  /* Interactive component styling */
+  .post-component {
+    @apply my-8 flex justify-center items-center min-h-[400px];
+  }
+
+  .post-component-figure {
+    @apply my-8 flex flex-col items-center;
+  }
+
+  .post-component-caption {
+    @apply mt-3 text-center text-sm text-seasalt-300 italic max-w-2xl;
+  }
 }
