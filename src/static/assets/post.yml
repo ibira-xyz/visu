@@ -12,9 +12,8 @@ tags:
   - YAML
   - Configuration
   - Data Serialization
-content_metadata:
-  - type: markdown
-    path: static/assets/content.md
+content: static/assets/content.md
+content_elements:
   - type: component
     id: pendulum-demo
     script: static/components/pendulum.js
@@ -25,6 +24,7 @@ content_metadata:
       height: 600
     caption: "Interactive pendulum simulation demonstrating harmonic motion"
   - type: image
+    id: yaml-diagram
     path: static/assets/drawing.svg
     description: "A diagram illustrating YAML structure."
     legend: "YAML Structure Diagram"
@@ -37,5 +37,3 @@ content_metadata:
       width: 800
       height: 500
     caption: "Particle system with dynamic connections"
-  - type: markdown
-    path: static/assets/content2.md
