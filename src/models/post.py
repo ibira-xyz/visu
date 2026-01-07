@@ -4,7 +4,8 @@ from typing import NamedTuple
 class Post(NamedTuple):
     """Data structure representing a blog post."""
     title: str
-    content_metadata: list[dict]
+    content: str
+    content_elements: list[dict]
     description: str
     date: str
     author: str
