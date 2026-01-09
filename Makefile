@@ -63,6 +63,6 @@ deploy: ## Deploy to AWS (requires AWS CLI configured)
 	docker tag post:$(ENV) 987608117561.dkr.ecr.sa-east-1.amazonaws.com/post:$(ENV) && \
 	docker push 987608117561.dkr.ecr.sa-east-1.amazonaws.com/root:$(ENV) && \
 	docker push 987608117561.dkr.ecr.sa-east-1.amazonaws.com/post:$(ENV)
-	aws lambda update-function-code --function-name root --image-uri 987608117561.dkr.ecr.sa-east-1.amazonaws.com/root:$(ENV)
-	aws lambda update-function-code --function-name post-$(ENV) --image-uri 987608117561.dkr.ecr.sa-east-1.amazonaws.com/post:$(ENV)
+	aws lambda update-function-code --function-name root --image-uri 987608117561.dkr.ecr.sa-east-1.amazonaws.com/root:$(ENV) --no-cli-pager
+	aws lambda update-function-code --function-name post-$(ENV) --image-uri 987608117561.dkr.ecr.sa-east-1.amazonaws.com/post:$(ENV) --no-cli-pager
 	@echo "✅ Deployment complete!"
