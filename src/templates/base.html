@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}pt{% endblock %}" class="bg-sage-900">
+  <head>
+    <title>{% block title %}ibira{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="dS4CTneGYzY3fn+LwPwNEw" async></script>
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="{% block og_title %}ibira{% endblock %}" />
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+    <meta property="og:image" content="{% block og_image %}{{ cdn_url }}static/assets/drawing.svg{% endblock %}" />
+    <meta property="og:url" content="{% block og_url %}{{ url }}{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}A collection of my projects and writings.{% endblock %}" />
+    <meta property="og:site_name" content="ibira" />
+    <meta property="og:locale" content="pt_BR" />
+    {# <meta property="og:locale_alternate" content="en_US" /> #}
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="ahrefs-site-verification" content="4bcb9ebbaa30dd2550ba31217eb93da20cf113d3610e12bc75a94e7595c945b7">
+    
+    <!-- Additional head content -->
+    {% block extra_head %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ cdn_url }}static/output.css" />
+    
+    <!-- Interactive component loader -->
+    <script src="{{ cdn_url }}static/component-loader.js" defer></script>
+  </head>
+<body class="bg-seasalt min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="mb-8 flex justify-center">
+      <div class="flex w-8/12 justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <a href="/" class="no-underline">
+            <h1 id="site-title" class="text-dark-moss-green text-6xl font-bold">ibira</h1>
+          </a>
+          <span aria-hidden="true" class="invisible text-6xl font-bold">ibira</span>
+        </div>
+        <div class="flex space-x-6">
+          <a href="/sobre" class="text-dark-moss-green hover:text-dark-moss-green-600 transition-colors">sobre</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="grow">
+      {% block content %}{% endblock %}
+    </main>
+    <!-- Footer -->
+    <footer class="bg-sage-900 text-dark-moss-green py-6 mt-12">
+      <div class="container mx-auto px-4 text-center py-8">
+        <p>&copy; 2025 ibira. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,24 +1,34 @@
 """A simple local server for development and testing purposes."""
 from flask import Flask
-from yaml import load, SafeLoader
 
-from renderers import IndexRenderer
+from views import render_index, render_post
+from controllers import post_controller, index_controller
+from backend import get_backend
+from responses import safe_response, flask_response
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-with open("config/local.yaml", "r", encoding="utf-8") as f:
-    config = load(f, Loader=SafeLoader)
+backend = get_backend()
 
 @app.route("/")
+@safe_response(flask_response)
 def home():
     """Route handler for the home page"""
-    return IndexRenderer(config).render(items=[{
-        "title": "Sample Item",
-        "description": "This is a description for a sample item.",
-        "image_url": "sample.jpg",
-        "link": "https://example.com"
-    }]*5)
+    return render_index(
+        **index_controller.process_posts(
+            backend.get_all_posts()
+        )
+    )
 
+@app.route("/post/<slug>")
+@safe_response(flask_response)
+def post(slug):
+    """Route handler for a sample post page"""
+    return render_post(
+        **post_controller.process_post(
+            backend.get_post(slug),
+            backend)
+        )
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=8080, debug=True)

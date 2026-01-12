@@ -1,0 +1,39 @@
+author:
+  name: Jonas Amaro
+  email: jonas@ibira.xyz
+banner:
+  path: static/assets/drawing.svg
+  description: "An illustrative banner for the YAML post."
+  legend: "YAML Basics"
+date: 2024-06-15
+title: "Understanding the Basics of YAML"
+description: "A comprehensive guide to YAML syntax and usage."
+tags:
+  - YAML
+  - Configuration
+  - Data Serialization
+content: static/assets/content.md
+content_elements:
+  - type: component
+    id: pendulum-demo
+    script: static/components/pendulum.js
+    data:
+      length: 200
+      angle: 60
+      width: 800
+      height: 600
+    caption: "Interactive pendulum simulation demonstrating harmonic motion"
+  - type: image
+    id: yaml-diagram
+    path: static/assets/drawing.svg
+    description: "A diagram illustrating YAML structure."
+    legend: "YAML Structure Diagram"
+  - type: component
+    id: particles-demo
+    script: static/components/particles.js
+    data:
+      count: 75
+      color: "#e63946"
+      width: 800
+      height: 500
+    caption: "Particle system with dynamic connections"

@@ -1,0 +1,26 @@
+# Interactive Physics Demonstrations
+
+This post demonstrates the interactive component system with embedded physics simulations and visualizations.
+
+## Introduction
+
+Below you'll find two interactive components:
+
+1. A **pendulum simulation** using Matter.js physics engine
+2. A **particle system** with custom canvas animations
+
+These components are embedded directly in the post content using the YAML metadata system.
+
+{{ particles-demo }}
+
+## Seção 3
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Dicta reiciendis consequatur, placeat aut pariatur quibusdam porro, hic ducimus aut corrupti eos cum modi tempore maxime corporis enim? Iusto facilis cumque officia dolorum, dolores et cupiditate, suscipit est expedita eius porro quos architecto hic fugit molestias animi iste. Expedita officiis porro nihil similique odit consequatur ipsum nostrum rem excepturi, voluptatum suscipit error ab, nesciunt nobis consectetur reiciendis deleniti quos, corrupti voluptates doloremque neque quae nemo officiis repellendus explicabo dolorem delectus, eos doloremque optio molestiae at.
+
+{{ yaml-diagram }}
+
+## Seção 4
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Libero velit at cumque hic, nisi quae at minima alias explicabo, praesentium esse quis modi odio. Dolorem autem blanditiis quas deserunt harum repellat debitis provident, eaque mollitia quo temporibus blanditiis maiores. Veniam perspiciatis dolore reiciendis maxime voluptas quia eaque alias inventore architecto voluptatem, iste odit optio nostrum, praesentium labore eius eaque expedita voluptatem velit, necessitatibus voluptates minima earum quod aut ab tenetur velit aliquam, maiores aperiam a recusandae saepe?
+
+{{ pendulum-demo }}
