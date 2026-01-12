@@ -1,10 +1,10 @@
 """AWS Lambda handler for the home route"""
-from backend import get_backend
+from drivers import get_driver
 from controllers import post_controller
 from views import render_post
 from responses import safe_response, lambda_response
 
-backend = get_backend()
+driver = get_driver()
 
 @safe_response(lambda_response)
 def handler(event, _context):
@@ -13,8 +13,8 @@ def handler(event, _context):
     slug = path_params.get('slug')
     html_content = render_post(
         **post_controller.process_post(
-            backend.get_post(slug),
-            backend
+            driver.get_post(slug),
+            driver
         )
     )
     return {

@@ -6,12 +6,12 @@ import logging
 from yaml import load, SafeLoader
 from werkzeug.exceptions import NotFound, InternalServerError
 
-from backend.backend import Backend
+from drivers.driver import Driver
 from models import Post
 
 logger = logging.getLogger(__name__)
 
-class LocalBackend(Backend):
+class LocalDriver(Driver):
     """A reader that reads content from a local file."""
     def __init__(self, base_path):
         self.base_path = base_path

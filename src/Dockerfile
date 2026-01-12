@@ -26,7 +26,7 @@ WORKDIR ${LAMBDA_TASK_ROOT}
 RUN uv sync --no-dev
 
 # Copy application files
-COPY backend/ ${LAMBDA_TASK_ROOT}/backend/
+COPY drivers/ ${LAMBDA_TASK_ROOT}/drivers/
 COPY config/ ${LAMBDA_TASK_ROOT}/config/
 COPY controllers/ ${LAMBDA_TASK_ROOT}/controllers/
 COPY models/ ${LAMBDA_TASK_ROOT}/models/

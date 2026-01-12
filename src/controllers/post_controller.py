@@ -2,7 +2,7 @@
 
 import re
 
-from backend.backend import Backend
+from drivers.driver import Driver
 from models import Post, PostContent
 from parsers import parse_markdown, process_date, ContentElementParser
 
@@ -10,9 +10,9 @@ from parsers import parse_markdown, process_date, ContentElementParser
 def create_post_content(slug: str,
                         content: str,
                         content_elements: list,
-                        backend: Backend) -> PostContent:
+                        driver: Driver) -> PostContent:
     """Process content items and return combined HTML with placeholder substitution."""
-    markdown_content = backend.get_content(content)
+    markdown_content = driver.get_content(content)
     html = parse_markdown(markdown_content)
 
     processor = ContentElementParser(content_elements)
@@ -25,11 +25,11 @@ def create_post_content(slug: str,
         component_scripts=processor.component_scripts
     )
 
-def process_post(post: Post, backend: Backend) -> dict:
+def process_post(post: Post, driver: Driver) -> dict:
     """Process raw post content into a Post entity."""
     return {'post': post,
             'post_content': create_post_content(post.slug,
                                                 post.content,
                                                 post.content_elements,
-                                                backend),
+                                                driver),
             'formatted_date': process_date(post.date)}

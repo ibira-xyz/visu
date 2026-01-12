@@ -1,7 +1,7 @@
 """AWS Lambda handler for the home route"""
 import logging
 import time
-from backend import get_backend
+from drivers import get_driver
 from controllers import index_controller
 from views import render_index
 from responses import safe_response, lambda_response
@@ -13,8 +13,8 @@ logger.setLevel(logging.INFO)
 logger.info("Lambda handler starting - initializing components")
 start_time = time.time()
 
-backend = get_backend()
-logger.info("Backend initialized in %.3f seconds", time.time() - start_time)
+driver = get_driver()
+logger.info("Driver initialized in %.3f seconds", time.time() - start_time)
 logger.info("All components initialized in %.3f seconds", time.time() - start_time)
 
 
@@ -26,11 +26,11 @@ def handler(_event, _context):
 
     # Step 1: Fetch index data
     fetch_start = time.time()
-    logger.info("Starting to fetch index data from backend")
+    logger.info("Starting to fetch index data from driver")
 
     # Monitor fetch progress with periodic updates
     index_data = []
-    data_generator = backend.get_all_posts()
+    data_generator = driver.get_all_posts()
 
     for i, item in enumerate(data_generator):
         if time.time() - fetch_start > 8.0:  # If taking more than 8 seconds

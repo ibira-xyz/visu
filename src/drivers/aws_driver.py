@@ -1,4 +1,4 @@
-""""AWS Backend Module."""
+""""AWS Driver Module."""
 import logging
 from typing import Generator
 
@@ -6,7 +6,7 @@ import boto3
 from boto3.dynamodb.conditions import Key
 from werkzeug.exceptions import NotFound, InternalServerError
 
-from backend.backend import Backend
+from drivers.driver import Driver
 from config.app_config import AppConfig
 from models import Post
 
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 boto3.set_stream_logger('boto3.resources', logging.INFO)
 config = AppConfig()
 
-class AwsBackend(Backend):
+class AwsDriver(Driver):
     """A reader that reads content from AWS S3 and DynamoDB."""
     def __init__(self):
         try:
