@@ -1,0 +1,5 @@
+driver_type: aws
+searchpath: templates
+static_url: https://cdn.ibira.xyz/
+base_url: https://ibira.xyz/
+assets_bucket: ibira
