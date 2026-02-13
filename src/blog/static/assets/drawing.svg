@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800"
+   height="600"
+   viewBox="0 0 167.38058 125.53544"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="drawing.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.52"
+     inkscape:cx="359.61538"
+     inkscape:cy="472.11538"
+     inkscape:window-width="1472"
+     inkscape:window-height="894"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ff6a5c;fill-opacity:1;stroke-width:0.994914;stroke-linecap:round"
+       id="rect2"
+       width="167.38058"
+       height="125.53544"
+       x="-1.7763568e-15"
+       y="0" />
+    <path
+       style="fill:#ccdfcb;fill-opacity:1;stroke-width:1.14346;stroke-linecap:round"
+       id="path1"
+       sodipodi:type="arc"
+       sodipodi:cx="104.60196"
+       sodipodi:cy="2.8050816"
+       sodipodi:rx="30.377966"
+       sodipodi:ry="30.377966"
+       sodipodi:start="0"
+       sodipodi:end="4.9951286"
+       sodipodi:arc-type="slice"
+       d="M 134.97993,2.8050816 A 30.377966,30.377966 0 0 1 114.21591,31.621617 30.377966,30.377966 0 0 1 80.3092,21.044672 30.377966,30.377966 0 0 1 79.611765,-14.466601 30.377966,30.377966 0 0 1 113.07703,-26.366719 l -8.47507,29.1718006 z"
+       transform="rotate(33.284441)" />
+  </g>
+</svg>
