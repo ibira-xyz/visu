@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ibira.wsgi.application'
+ASGI_APPLICATION = 'ibira.asgi.application'
 
 
 # Database
