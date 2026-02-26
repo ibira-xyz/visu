@@ -54,10 +54,10 @@
   </div>
 </article>
 
-{% if post_content.component_scripts %}
+{% if component_scripts %}
 <!-- Load component scripts -->
-{% for script in post_content.component_scripts %}
-<script src="{{ cdn_url }}{{ script }}"></script>
+{% for script in component_scripts %}
+<script src="{{ script }}"></script>
 {% endfor %}
 {% endif %}
 {% endblock %}

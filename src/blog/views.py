@@ -29,7 +29,7 @@ def post_detail(request, slug):
     return render(request, "post.html", context={
         "post": post,
         "content": html_content,
-        "post_content":  parser.component_scripts,
+        "component_scripts":  parser.component_scripts,
         "cdn_url": "static/",
         "cms_url": "https://cdn.ibira.xyz/",
         "base_url": "/"

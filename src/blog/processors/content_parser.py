@@ -7,6 +7,7 @@ content's structure and formatting flags.
 """
 
 import json
+import re
 import logging
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.safestring import mark_safe
@@ -68,6 +69,14 @@ class ContentParser:
         elif node_type == 'paragraph':
             # Check for component placeholder
             children = node.get('children', [])
+            if len(children) == 1:
+                child = children[0]
+                if child.get('type') == 'text':
+                    text_content = child.get('text', '')
+                    match = re.match(r'\{\{\s*([a-zA-Z0-9-_]+)\s*\}\}', text_content.strip())
+                    if match:
+                        return self.render_component(match.group(1))
+
             content = self.render_children(node)
             if not content.strip() and not children:
                 return '<br>'
@@ -131,6 +140,27 @@ class ContentParser:
         if flags & IS_SUPERSCRIPT:
             text = f'<sup>{text}</sup>'
         return text
+
+    def render_component(self, component_name):
+        """Render a component based on its name."""
+        script_name = component_name.replace('-demo', '')
+        if script_name == 'yaml-diagram':
+            return f'<div class="yaml-diagram-placeholder">{component_name}</div>'
+
+        script_path = f'{self.cdn_url}static/components/{script_name}.js'
+
+        if script_path not in self.component_scripts:
+            self.component_scripts.append(script_path)
+
+        return f'''
+        <figure class="post-component-figure">
+            <div id="{component_name}" class="post-component" data-component-script="{script_path}">
+            </div>
+            <figcaption class="post-component-caption">
+                {component_name.replace('-', ' ').title()}
+            </figcaption>
+        </figure>
+        '''
 
     def render_media_block(self, fields):
         """Render a media block based on the provided fields."""
