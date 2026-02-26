@@ -19,18 +19,23 @@
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --leading-relaxed: 1.625;
     --radius-lg: 0.5rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -38,11 +43,15 @@
     --default-mono-font-family: var(--font-mono);
     --color-dark-moss-green: #404b0c;
     --color-dark-moss-green-600: #7f9318;
+    --color-sage-100: #272719;
+    --color-sage-600: #c4c4a3;
+    --color-sage-700: #d3d3ba;
     --color-sage-900: #f0f0e8;
     --color-seasalt: #fafafa;
     --color-seasalt-300: #969696;
     --color-eerie-black-700: #7d7d7d;
     --color-cordovan-400: #753332;
+    --color-cordovan-700: #c98281;
     --color-cordovan-900: #edd5d5;
   }
 }
@@ -198,8 +207,14 @@
   .invisible {
     visibility: hidden;
   }
+  .visible {
+    visibility: visible;
+  }
   .absolute {
     position: absolute;
+  }
+  .fixed {
+    position: fixed;
   }
   .relative {
     position: relative;
@@ -260,6 +275,9 @@
   }
   .block {
     display: block;
+  }
+  .contents {
+    display: contents;
   }
   .flex {
     display: flex;
@@ -436,6 +454,12 @@
   .text-gray-700 {
     color: var(--color-gray-700);
   }
+  .lowercase {
+    text-transform: lowercase;
+  }
+  .italic {
+    font-style: italic;
+  }
   .no-underline {
     text-decoration-line: none;
   }
@@ -577,6 +601,94 @@
     color: var(--color-seasalt-300);
     font-style: italic;
   }
+  .prose ol {
+    margin-block: calc(var(--spacing) * 4);
+    list-style-position: inside;
+    list-style-type: decimal;
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+    }
+    padding-left: calc(var(--spacing) * 4);
+  }
+  .prose ul {
+    margin-block: calc(var(--spacing) * 4);
+    list-style-position: inside;
+    list-style-type: disc;
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+    }
+    padding-left: calc(var(--spacing) * 4);
+  }
+  .prose li {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
+  .prose blockquote {
+    margin-block: calc(var(--spacing) * 4);
+    border-left-style: var(--tw-border-style);
+    border-left-width: 4px;
+    border-color: var(--color-sage-600);
+    background-color: var(--color-sage-900);
+    padding-left: calc(var(--spacing) * 4);
+    color: var(--color-cordovan-700);
+    font-style: italic;
+  }
+  .prose code {
+    border-radius: 0.25rem;
+    background-color: var(--color-sage-100);
+    padding-inline: calc(var(--spacing) * 1.5);
+    padding-block: calc(var(--spacing) * 0.5);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    color: var(--color-sage-700);
+  }
+  .prose a {
+    color: var(--color-dark-moss-green-600);
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
+  .prose h1 {
+    margin-top: calc(var(--spacing) * 8);
+    margin-bottom: calc(var(--spacing) * 4);
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-moss-green);
+  }
+  .prose h2 {
+    margin-top: calc(var(--spacing) * 6);
+    margin-bottom: calc(var(--spacing) * 3);
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-moss-green);
+  }
+  .prose h3 {
+    margin-top: calc(var(--spacing) * 4);
+    margin-bottom: calc(var(--spacing) * 2);
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-dark-moss-green);
+  }
+  .prose p {
+    margin-block: calc(var(--spacing) * 3);
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
 }
 @property --tw-rotate-x {
   syntax: "*";
@@ -681,6 +793,15 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -707,6 +828,8 @@
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
       --tw-duration: initial;
+      --tw-space-y-reverse: 0;
+      --tw-leading: initial;
     }
   }
 }

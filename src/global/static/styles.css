@@ -122,4 +122,45 @@
   .post-component-caption {
     @apply mt-3 text-center text-sm text-seasalt-300 italic max-w-2xl;
   }
+
+  /* Prose content styling for lists */
+  .prose ol {
+    @apply list-decimal list-inside my-4 pl-4 space-y-2;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside my-4 pl-4 space-y-2;
+  }
+
+  .prose li {
+    @apply text-base leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply bg-sage-900 border-l-4 border-sage-600 pl-4 italic my-4 text-cordovan-700;
+  }
+
+  .prose code {
+    @apply bg-sage-100 text-sage-700 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose a {
+    @apply text-dark-moss-green-600 hover:underline;
+  }
+
+  .prose h1 {
+    @apply text-3xl font-bold mt-8 mb-4 text-dark-moss-green;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold mt-6 mb-3 text-dark-moss-green;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold mt-4 mb-2 text-dark-moss-green;
+  }
+
+  .prose p {
+    @apply my-3 leading-relaxed;
+  }
 }
