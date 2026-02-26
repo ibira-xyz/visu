@@ -32,6 +32,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     _status = PostStatusField(default='draft', null=True)
 
+    objects: models.Manager["Post"] = models.Manager()
     # @ignore pylint: disable=missing-class-docstring
     class Meta:
         managed = False
@@ -97,6 +98,7 @@ class Media(models.Model):
     sizes_og_filesize = models.DecimalField(max_digits=20, decimal_places=0, null=True)
     sizes_og_filename = models.CharField(max_length=255, null=True)
 
+    objects: models.Manager["Media"] = models.Manager()
     # @ignore pylint: disable=missing-class-docstring
     class Meta:
         managed = False
