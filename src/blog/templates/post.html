@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ post.title }} - ibira{% endblock %}
 
@@ -7,6 +8,11 @@
 {% block og_image %}{{ cdn_url }}{{ post.banner.path }}{% endblock %}
 {% block og_url %}{{ endpoint }}/{{ post.slug }}{% endblock %}
 {% block og_description %}{{ post.description }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'scripts/node_modules/katex/dist/katex.min.css' %}" />
+<script src="{% static 'scripts/node_modules/katex/dist/katex.min.js' %}" defer></script>
+{% endblock %}
 
 
 {% block content %}
@@ -60,4 +66,5 @@
 <script src="{{ script }}"></script>
 {% endfor %}
 {% endif %}
+<script src="{% static 'scripts/katex-init.js' %}" defer></script>
 {% endblock %}

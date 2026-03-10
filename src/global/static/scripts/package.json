@@ -1,0 +1,24 @@
+{
+  "name": "visu-js",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "frontend",
+    "components"
+  ],
+  "homepage": "https://github.com/ibira-xyz/visu#readme",
+  "bugs": {
+    "url": "https://github.com/ibira-xyz/visu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibira-xyz/visu.git"
+  },
+  "license": "ISC",
+  "author": "Jonas Amaro",
+  "type": "commonjs",
+  "main": "katex-init.js",
+  "dependencies": {
+    "katex": "^0.16.38"
+  }
+}

@@ -10,6 +10,7 @@ import json
 import re
 import logging
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from ..models import Media
 
@@ -103,7 +104,13 @@ class ContentParser:
             fields = node.get('fields', {})
             if fields.get('blockType') == 'mediaBlock':
                 return self.render_media_block(fields)
+            elif fields.get('blockType') == 'latex':
+                return self.render_latex(fields.get('latex', ''), display_mode=True)
             return ""
+
+        elif node_type == 'inlineLatex':
+            latex = node.get('latex', {})
+            return self.render_latex(latex, display_mode=False)
 
         elif node_type == 'text':
             text = node.get('text', '')
@@ -197,3 +204,18 @@ class ContentParser:
             return ""
         return ""
 
+    def render_latex(self, latex, display_mode):
+        """Render a LaTeX block based on the provided fields."""
+        escaped_latex = escape(str(latex))
+        if not escaped_latex.strip():
+            return ""
+
+        if display_mode:
+            tag = 'div'
+            classes = 'latex-block flex justify-center my-6'
+            display_mode = 'displayMode'
+        else:
+            tag = 'span'
+            classes = 'latex-block'
+            display_mode = ''
+        return f'<{tag} class="{classes}" {display_mode} data-latex="{escaped_latex}">{escaped_latex}</{tag}>'
