@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-moss-green: #404b0c;
+  --color-dark-moss-green-100: #0d0f02;
+  --color-dark-moss-green-200: #1a1e05;
+  --color-dark-moss-green-300: #262d07;
+  --color-dark-moss-green-400: #333c0a;
+  --color-dark-moss-green-500: #404b0c;
+  --color-dark-moss-green-600: #7f9318;
+  --color-dark-moss-green-700: #bddb25;
+  --color-dark-moss-green-800: #d3e76d;
+  --color-dark-moss-green-900: #e9f3b6;
+
+  --color-sage: #b6b68d;
+  --color-sage-100: #272719;
+  --color-sage-200: #4e4e32;
+  --color-sage-300: #76764b;
+  --color-sage-400: #9c9c65;
+  --color-sage-500: #b6b68d;
+  --color-sage-600: #c4c4a3;
+  --color-sage-700: #d3d3ba;
+  --color-sage-800: #e2e2d1;
+  --color-sage-900: #f0f0e8;
+
+  --color-seasalt: #fafafa;
+  --color-seasalt-100: #323232;
+  --color-seasalt-200: #646464;
+  --color-seasalt-300: #969696;
+  --color-seasalt-400: #c8c8c8;
+  --color-seasalt-500: #fafafa;
+  --color-seasalt-600: #fbfbfb;
+  --color-seasalt-700: #fcfcfc;
+  --color-seasalt-800: #fdfdfd;
+  --color-seasalt-900: #fefefe;
+
+  --color-eerie-black: #262626;
+  --color-eerie-black-100: #080808;
+  --color-eerie-black-200: #0f0f0f;
+  --color-eerie-black-300: #171717;
+  --color-eerie-black-400: #1f1f1f;
+  --color-eerie-black-500: #262626;
+  --color-eerie-black-600: #525252;
+  --color-eerie-black-700: #7d7d7d;
+  --color-eerie-black-800: #a8a8a8;
+  --color-eerie-black-900: #d4d4d4;
+
+  --color-cordovan: #93413f;
+  --color-cordovan-100: #1d0d0d;
+  --color-cordovan-200: #3b1a19;
+  --color-cordovan-300: #582626;
+  --color-cordovan-400: #753332;
+  --color-cordovan-500: #93413f;
+  --color-cordovan-600: #b75856;
+  --color-cordovan-700: #c98281;
+  --color-cordovan-800: #dbacab;
+  --color-cordovan-900: #edd5d5;
+}
+
+/* Semantic classes for post content */
+@layer components {
+  .post-paragraph {
+    @apply text-dark-moss-green indent-8 text-justify mx-32 text-lg;
+  }
+
+  .post-heading-1 {
+    @apply text-dark-moss-green mx-20;
+  }
+
+  .post-heading-2 {
+    @apply text-cordovan-400 font-bold mt-8 mb-4 text-center text-xl;
+  }
+
+  .post-heading-3 {
+    @apply text-dark-moss-green;
+  }
+
+  .post-list {
+    @apply text-dark-moss-green;
+  }
+
+  .post-list-item {
+    @apply text-dark-moss-green;
+  }
+
+  .post-link {
+    @apply text-dark-moss-green-600 hover:underline;
+  }
+  .post-image-caption {
+    @apply text-center text-xs text-seasalt-300 mt-2
+  }
+  .post-image-figure {
+    @apply justify-center mb-8 mt-8
+  }
+
+  /* Physics simulation styling */
+  .post-simulation {
+    @apply my-8 flex justify-center;
+  }
+
+  .post-simulation-figure {
+    @apply my-8 flex flex-col items-center;
+  }
+
+  .post-simulation canvas {
+    @apply border-2 border-gray-300 rounded-lg shadow-md;
+  }
+
+  .post-simulation-caption {
+    @apply mt-3 text-center text-sm text-seasalt-300 italic max-w-2xl;
+  }
+
+  /* Interactive component styling */
+  .post-component {
+    @apply my-8 flex justify-center items-center min-h-[400px];
+  }
+
+  .post-component-figure {
+    @apply my-8 flex flex-col items-center;
+  }
+
+  .post-component-caption {
+    @apply mt-3 text-center text-sm text-seasalt-300 italic max-w-2xl;
+  }
+
+  /* Prose content styling for lists */
+  .prose ol {
+    @apply list-decimal list-inside my-4 pl-4 space-y-2;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside my-4 pl-4 space-y-2;
+  }
+
+  .prose li {
+    @apply text-base leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply bg-sage-900 border-l-4 border-sage-600 pl-4 italic my-4 text-cordovan-700;
+  }
+
+  .prose code {
+    @apply bg-sage-100 text-sage-700 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose a {
+    @apply text-dark-moss-green-600 hover:underline;
+  }
+
+  .prose h1 {
+    @apply text-3xl font-bold mt-8 mb-4 text-dark-moss-green;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold mt-6 mb-3 text-dark-moss-green;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold mt-4 mb-2 text-dark-moss-green;
+  }
+
+  .prose p {
+    @apply my-3 leading-relaxed;
+  }
+}

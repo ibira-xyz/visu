@@ -1,0 +1,6 @@
+driver_type: local
+base_path: static/assets/
+searchpath: templates
+static_url: /
+base_url: http://localhost:8080/
+assets_bucket: ibira

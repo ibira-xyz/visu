@@ -1,0 +1,5 @@
+todo:
+  - automatiza criação de nova view no visu
+  - padroniza nome do index no infra e adiciona ambiente
+  - considera reaproveitar codigo no infra
+  - adiciona testes unitários no visu
