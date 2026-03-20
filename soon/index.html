@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ibira | Vem aí</title>
-        <link rel="stylesheet" href="static/build.css">
+        <link rel="stylesheet" href="static/output.css">
         <link rel="icon" href="static/favicon.png">
     </head>
     <body class="bg-sage-900 text-center p-8">
@@ -12,6 +12,21 @@
             <h1 class="text-6xl font-bold mt-8 mb-4 text-dark-moss-green">Vem aí</h1>
             <img src="static/logotipo_ibira.jpg" alt="ibira-logo" class="w-80 h-80 mb-4 rounded-full mx-auto">
             <p class="text-eerie-black-600 my-3 leading-relaxed">Estamos trabalhando duro para trazer algo incrível. Fique ligado!</p>
+        </div>
+        <div class="my-20 bg-dark-moss-green p-6 rounded-lg inline-block">
+            <form
+                action="https://buttondown.com/api/emails/embed-subscribe/jonasrla"
+                method="post"
+                class="embeddable-buttondown-form"
+            >
+                <input class="bg-white text-black py-2 px-4 rounded" type="email" name="email" id="bd-email" placeholder="tu@exemplo.com" />
+                <input class="bg-cordovan text-white font-bold py-2 px-4 rounded" type="submit" value="Inscrever-se" />
+                <p class="text-dark-moss-green-600 mt-4 text-sm">
+                    <a href="https://buttondown.com/refer/jonasrla" target="_blank">
+                    Powered by Buttondown.
+                    </a>
+                </p>
+            </form>
         </div>
     </body>
 </html>
